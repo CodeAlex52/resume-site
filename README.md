@@ -2,7 +2,9 @@
 
 深色单页简历站，服务于 AI 应用开发 / Agent 架构岗位投递。部署在 Cloudflare Pages，国内可直接访问。
 
-线上地址：上线后补充（`https://suzhe-resume.pages.dev`）
+线上地址：**https://suzhe-resume.pages.dev**
+
+源码：https://github.com/CodeAlex52/resume-site
 
 ## 特点
 
@@ -43,9 +45,18 @@ python3 -m http.server 4173
 
 ## 部署
 
+Cloudflare Pages 项目 `suzhe-resume` 已创建并绑定 `main` 为生产分支。后续更新：
+
 ```bash
-npx wrangler pages project create suzhe-resume --production-branch main
-npx wrangler pages deploy . --project-name suzhe-resume
+npx wrangler pages deploy . --project-name suzhe-resume --branch main
+```
+
+首次创建项目（本仓库已完成，无需重复）：
+
+```bash
+# 若 wrangler 把项目创建成 Worker，请在 Cloudflare Dashboard
+# Workers & Pages → Create → Pages → Direct Upload 新建名为 suzhe-resume 的项目
+npx wrangler pages deploy . --project-name suzhe-resume --branch main
 ```
 
 ## 口径
