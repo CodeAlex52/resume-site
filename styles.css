@@ -950,6 +950,14 @@ main {
 
 .footer p { margin: 0; }
 
+.footer a {
+  color: var(--muted);
+  border-bottom: 1px dotted var(--line-strong);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.footer a:hover { color: var(--accent); border-color: var(--accent); }
+
 /* --------------------------------------------------------------------------
    Toast
    -------------------------------------------------------------------------- */
@@ -1063,7 +1071,7 @@ main {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
-  .reveal { opacity: 1; transform: none; }
+  .reveal, .js .reveal { opacity: 1; transform: none; }
 }
 
 /* --------------------------------------------------------------------------
@@ -1098,5 +1106,5 @@ main {
   .node-detail { background: #f7f7f7; }
   .stats { background: #ddd; }
   .stat, .metric, .contact-grid a { background: #fff; }
-  .reveal { opacity: 1; transform: none; }
+  .reveal, .js .reveal { opacity: 1 !important; transform: none !important; }
 }

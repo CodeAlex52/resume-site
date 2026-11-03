@@ -1,5 +1,7 @@
 # 苏哲 · 个人简历站
 
+![预览](assets/og.png)
+
 深色单页简历站，服务于 AI 应用开发 / Agent 架构岗位投递。部署在 Cloudflare Pages，国内可直接访问。
 
 线上地址：**https://suzhe-resume.pages.dev**
