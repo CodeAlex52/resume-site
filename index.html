@@ -4,18 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>苏哲 — AI 应用开发工程师 / Agent 架构</title>
-<meta name="description" content="苏哲，AI 应用开发工程师 / Agent 架构。6 个项目的一张 Agent 业务系统架构图：事件 → 平台 → 业务执行 → 数据中台 → 模型进化，数据沉淀与人的决定贯穿全链路。">
+<meta name="description" content="苏哲，AI 应用开发工程师 / Agent 架构。以工业级 Agent Loop、RTC 实时交互与 SFT/DPO 模型进化构建 6 个项目互成飞轮的高可用业务闭环。">
 <meta name="author" content="苏哲">
-<meta name="theme-color" content="#0a192f">
+<meta name="theme-color" content="#060811">
 <link rel="canonical" href="https://suzhe-resume.pages.dev/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://suzhe-resume.pages.dev/">
 <meta property="og:title" content="苏哲 — AI 应用开发工程师 / Agent 架构">
-<meta property="og:description" content="6 个项目不是 6 份履历，而是一张跑起来的 Agent 业务系统架构图。">
+<meta property="og:description" content="6 个项目彼此咬合，互成运转闭环。业务产生数据 → 数据训练模型 → 模型反哺业务。">
 <meta property="og:image" content="https://suzhe-resume.pages.dev/assets/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="苏哲 — AI 应用开发工程师 / Agent 架构">
-<meta name="twitter:description" content="6 个项目不是 6 份履历，而是一张跑起来的 Agent 业务系统架构图。">
+<meta name="twitter:description" content="6 个项目互成飞轮的 Agent 业务全景系统。">
 <meta name="twitter:image" content="https://suzhe-resume.pages.dev/assets/og.png">
 <script type="application/ld+json">
 {
@@ -28,439 +28,689 @@
   "telephone": "+86-15367885946",
   "sameAs": ["https://github.com/CodeAlex52"],
   "address": { "@type": "PostalAddress", "addressLocality": "上海", "addressCountry": "CN" },
-  "knowsAbout": ["Agent 架构", "Agent Loop", "RAG", "LangGraph", "MCP", "SFT", "DPO", "实时语音", "LLM 网关"]
+  "knowsAbout": ["Agent 架构", "Agent Loop", "RTC 语音交互", "LangGraph", "MCP", "SFT", "DPO", "Hybrid RAG", "LLM 网关"]
 }
 </script>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a192f'/%3E%3Cpath d='M16 20h32M16 32h20M16 44h32' stroke='%2364ffda' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23060811'/%3E%3Cpath d='M16 20h32M16 32h20M16 44h32' stroke='%2300f2fe' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="styles.css">
-<script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
-<div class="bg-glow" aria-hidden="true"></div>
 
-<div class="page">
-  <header class="site-head">
-    <div class="head-main">
-      <h1 class="name">苏哲</h1>
-      <p class="role">AI 应用开发工程师 <span>/ Agent 架构</span></p>
-      <p class="tagline">6 个项目不是 6 份履历，而是一张跑起来的业务系统图。</p>
+<!-- Dynamic Background Aurora & Cyber Grid -->
+<div class="bg-scene" aria-hidden="true">
+  <div class="bg-grid"></div>
+  <div class="bg-glow-orb bg-glow-1"></div>
+  <div class="bg-glow-orb bg-glow-2"></div>
+  <div class="bg-glow-orb bg-glow-3"></div>
+</div>
+
+<div class="page-wrap">
+  <!-- Top Navigation Header -->
+  <header class="top-nav">
+    <div class="nav-brand">
+      <span class="brand-badge">SZ</span>
+      <div>
+        <span class="brand-text">苏哲</span>
+        <span class="brand-sub"> · AI 应用开发 / Agent 架构</span>
+      </div>
     </div>
-    <div class="head-side">
-      <nav class="nav" aria-label="页面导航">
-        <a href="#flywheel">架构</a>
-        <a href="#projects">项目</a>
-        <a href="#opensource">开源</a>
-        <a href="#experience">经历</a>
-        <a href="#contact">联系</a>
-      </nav>
-      <div class="head-actions">
-        <a class="btn primary" href="#projects">看 6 个项目</a>
-        <a class="btn ghost" href="assets/suzhe-resume.pdf" target="_blank" rel="noopener">PDF</a>
-        <a class="btn ghost" href="https://github.com/CodeAlex52" target="_blank" rel="noopener noreferrer">GitHub</a>
-      </div>
-      <div class="head-stats">
-        <span><b>3.5</b> 年</span>
-        <span><b>6</b> 项目</span>
-        <span><b>13</b> PR</span>
-        <span class="status"><i></i>上海 · 开放机会</span>
-      </div>
+    <nav class="nav-links" aria-label="主要导航">
+      <a href="#flywheel">业务飞轮</a>
+      <a href="#projects">项目工程</a>
+      <a href="#stack">技术全景</a>
+      <a href="#opensource">开源贡献 (13)</a>
+      <a href="#experience">经历</a>
+      <a href="#contact">联系</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn-pill btn-primary" href="#flywheel">运转飞轮 ⚡</a>
+      <a class="btn-pill btn-glass" href="assets/suzhe-resume.pdf" target="_blank" rel="noopener">下载 PDF</a>
+      <a class="btn-pill btn-glass" href="https://github.com/CodeAlex52" target="_blank" rel="noopener noreferrer">GitHub</a>
     </div>
   </header>
 
-  <main>
-    <!-- 01 架构图 -->
-    <section id="flywheel" class="arch-hero">
-      <div class="arch-sheet">
-        <div class="arch-sheet-head">
-          <div>
-            <p class="arch-kicker">SYSTEM ARCHITECTURE / 06 PROJECTS</p>
-            <h2 class="arch-title">6 个项目 · Agent 业务飞轮</h2>
-            <p class="arch-sub">业务产生数据 → 数据训练模型 → 模型反哺业务。点击任一项目标题查看运行链路。</p>
-          </div>
-          <div class="arch-legend">
-            <span class="legend-item"><i class="l-main"></i>主流程</span>
-            <span class="legend-item"><i class="l-return"></i>反哺 / 重派</span>
-            <span class="legend-item"><i class="l-human"></i>人的决定</span>
-            <span class="legend-item"><i class="l-record"></i>写入记录</span>
-          </div>
-        </div>
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-pill">
+      <span class="pulse-dot"></span>
+      <span>SYSTEM OPERATIONAL · 6 PRODUCTION AGENTS ACTIVE</span>
+    </div>
+    <h1 class="hero-title">
+      工业级 Agent Loop · 实时 RTC 交互<br>
+      <span class="gradient-text">构建业务自进化的多 Agent 飞轮</span>
+    </h1>
+    <p class="hero-sub">
+      6 个项目不是孤立的履历，而是一套<strong>互为齿轮、互相反哺</strong>的生产级架构：<br>
+      <strong>业务产生数据 → 中台清洗沉淀 → SFT/DPO 模型微调 → 适配器反哺业务</strong>。06 MCP 底座在中心提供统一能力。
+    </p>
 
-        <div class="arch-desktop">
-          <svg class="arch-svg" viewBox="0 0 1200 674" role="img" aria-label="6 个项目互成飞轮的系统架构图">
-            <defs>
-              <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#111827"/></marker>
-              <marker id="arr-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#7c3aed"/></marker>
-              <marker id="arr-orange" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#d97706"/></marker>
-              <marker id="arr-dash" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#94a3b8"/></marker>
-            </defs>
-            <g transform="translate(0,-46)">
-
-            <!-- events -->
-            <rect x="20" y="70" width="980" height="56" rx="12" fill="#e9f2fb" stroke="#bfd6ef"/>
-            <text x="34" y="102" font-size="11" font-weight="700" fill="#1e3a8a">事件</text>
-            <g font-size="10" fill="#263445" text-anchor="middle">
-              <rect x="100" y="83" width="130" height="30" rx="7" fill="#fff" stroke="#cbd9ea"/><text x="165" y="102">买家咨询</text>
-              <rect x="240" y="83" width="130" height="30" rx="7" fill="#fff" stroke="#cbd9ea"/><text x="305" y="102">售后报障</text>
-              <rect x="380" y="83" width="130" height="30" rx="7" fill="#fff" stroke="#cbd9ea"/><text x="445" y="102">内容选题</text>
-              <rect x="520" y="83" width="130" height="30" rx="7" fill="#fff" stroke="#cbd9ea"/><text x="585" y="102">数据接入</text>
-              <rect x="660" y="83" width="130" height="30" rx="7" fill="#fff" stroke="#cbd9ea"/><text x="725" y="102">模型评测</text>
-              <rect x="800" y="83" width="130" height="30" rx="7" fill="#fff" stroke="#cbd9ea"/><text x="865" y="102">平台调用</text>
-            </g>
-
-            <!-- 06 platform -->
-            <rect x="20" y="146" width="980" height="82" rx="12" fill="#143a33" stroke="#0b2a24"/>
-            <g class="arch-project" data-project="p6">
-              <rect class="arch-hit" x="20" y="146" width="980" height="30" rx="12"/>
-              <text x="34" y="168" font-size="11" font-weight="700" fill="#f4f8f5">06 · MCP 共享服务 / 统一网关</text>
-              <text x="930" y="168" font-size="8.5" fill="#f0c987">查看链路 ↗</text>
-            </g>
-            <g font-size="9" fill="#e9f6f1" text-anchor="middle">
-              <rect x="40" y="182" width="135" height="28" rx="6" fill="rgba(255,255,255,.09)" stroke="rgba(255,255,255,.28)"/><text x="107" y="200">鉴权 API Key→project</text>
-              <rect x="191" y="182" width="135" height="28" rx="6" fill="rgba(255,255,255,.09)" stroke="rgba(255,255,255,.28)"/><text x="258" y="200">幂等去重</text>
-              <rect x="342" y="182" width="135" height="28" rx="6" fill="rgba(255,255,255,.09)" stroke="rgba(255,255,255,.28)"/><text x="409" y="200">服务 / 模型路由</text>
-              <rect x="493" y="182" width="135" height="28" rx="6" fill="rgba(255,255,255,.09)" stroke="rgba(255,255,255,.28)"/><text x="560" y="200">Trace 贯穿</text>
-              <rect x="644" y="182" width="135" height="28" rx="6" fill="rgba(255,255,255,.09)" stroke="rgba(255,255,255,.28)"/><text x="711" y="200">配额 429</text>
-              <rect x="795" y="182" width="155" height="28" rx="6" fill="rgba(255,255,255,.09)" stroke="rgba(255,255,255,.28)"/><text x="872" y="200">MCP 转发</text>
-            </g>
-            <text x="40" y="222" font-size="8.5" fill="#9fc0b6">4 类共享能力：LLM / RAG / Memory / Prompt · 业务只依赖这一个 HTTP 入口</text>
-
-            <!-- business -->
-            <rect x="20" y="250" width="980" height="192" rx="12" fill="#ecf7f0" stroke="#c8e4d2"/>
-            <text x="34" y="270" font-size="11" font-weight="700" fill="#0f5132">业务执行 · 01 / 02 / 03</text>
-
-            <g class="arch-project" data-project="p1">
-              <rect class="arch-hit" x="36" y="278" width="286" height="30" rx="6"/>
-              <text x="40" y="292" font-size="11" font-weight="700" fill="#0f5132">01 导购 Agent</text>
-              <text x="40" y="305" font-size="8" fill="#4b6b57">Agent Loop · 5 Tools · Hybrid RAG</text>
-              <text x="310" y="292" font-size="8" fill="#0f766e">↗</text>
-            </g>
-            <g font-size="9.5" fill="#1f3a2b">
-              <rect x="40" y="318" width="280" height="22" rx="5" fill="#fff" stroke="#cfe0d5"/><text x="52" y="333">上下文装配（history + budget）</text>
-              <rect x="40" y="344" width="280" height="22" rx="5" fill="#fff" stroke="#cfe0d5"/><text x="52" y="359">Hybrid RAG（dense + BM25 + rerank）</text>
-              <rect x="40" y="370" width="280" height="22" rx="5" fill="#fff" stroke="#cfe0d5"/><text x="52" y="385">Agent Loop（plan → act → observe）</text>
-              <rect x="40" y="396" width="280" height="22" rx="5" fill="#fff" stroke="#cfe0d5"/><text x="52" y="411">5 个确定性 Tool + 低置信转人工</text>
-            </g>
-
-            <g class="arch-project" data-project="p2">
-              <rect class="arch-hit" x="346" y="278" width="286" height="30" rx="6"/>
-              <text x="350" y="292" font-size="11" font-weight="700" fill="#0f5132">02 RTC 语音售后</text>
-              <text x="350" y="305" font-size="8" fill="#4b6b57">CustomLLM · pgvector · Barge-in</text>
-              <text x="620" y="292" font-size="8" fill="#0f766e">↗</text>
-            </g>
-            <g font-size="9.5" fill="#1f3a2b">
-              <rect x="350" y="318" width="280" height="20" rx="5" fill="#fff" stroke="#cfe0d5"/><text x="362" y="332">ASR 语音转文本</text>
-              <rect x="350" y="342" width="280" height="20" rx="5" fill="#fff" stroke="#cfe0d5"/><text x="362" y="356">共享 RAG（pgvector HNSW）</text>
-              <rect x="350" y="366" width="280" height="20" rx="5" fill="#fff" stroke="#cfe0d5"/><text x="362" y="380">LLM 流式首 token</text>
-              <rect x="350" y="390" width="280" height="20" rx="5" fill="#fff" stroke="#cfe0d5"/><text x="362" y="404">TTS 合成与播放</text>
-              <rect x="350" y="414" width="280" height="20" rx="5" fill="#fff" stroke="#cfe0d5"/><text x="362" y="428">Barge-in 打断即停</text>
-            </g>
-
-            <g class="arch-project" data-project="p3">
-              <rect class="arch-hit" x="656" y="278" width="286" height="30" rx="6"/>
-              <text x="660" y="292" font-size="11" font-weight="700" fill="#0f5132">03 AIGC 内容工作流</text>
-              <text x="660" y="305" font-size="8" fill="#4b6b57">LangGraph · HITL · SSE</text>
-              <text x="930" y="292" font-size="8" fill="#0f766e">↗</text>
-            </g>
-            <g font-size="9.5" fill="#1f3a2b">
-              <rect x="660" y="318" width="280" height="20" rx="5" fill="#fff" stroke="#cfe0d5"/><text x="672" y="332">选题与大纲</text>
-              <rect x="660" y="342" width="280" height="20" rx="5" fill="#fff" stroke="#cfe0d5"/><text x="672" y="356">写作草稿</text>
-              <rect x="660" y="366" width="280" height="20" rx="5" fill="#fff3e4" stroke="#e8b36a"/><text x="672" y="380" fill="#92400e">HITL 人工审稿</text>
-              <rect x="660" y="390" width="280" height="20" rx="5" fill="#fff" stroke="#cfe0d5"/><text x="672" y="404">视觉拆解与配图</text>
-              <rect x="660" y="414" width="280" height="20" rx="5" fill="#fff" stroke="#cfe0d5"/><text x="672" y="428">本地化与归档</text>
-            </g>
-
-            <!-- data -->
-            <rect x="20" y="465" width="980" height="108" rx="12" fill="#e9f2fb" stroke="#bfd6ef"/>
-            <g class="arch-project" data-project="p4">
-              <rect class="arch-hit" x="20" y="465" width="980" height="28" rx="10"/>
-              <text x="34" y="485" font-size="11" font-weight="700" fill="#1e3a8a">04 数据中台 · 语料沉淀</text>
-              <text x="925" y="485" font-size="8.5" fill="#1d4ed8">查看链路 ↗</text>
-            </g>
-            <g font-size="9.5" fill="#263445" text-anchor="middle">
-              <rect x="40" y="495" width="140" height="28" rx="6" fill="#fff" stroke="#cbd9ea"/><text x="110" y="513">多源接入</text>
-              <rect x="191" y="495" width="140" height="28" rx="6" fill="#fff" stroke="#cbd9ea"/><text x="261" y="513">清洗切片</text>
-              <rect x="342" y="495" width="140" height="28" rx="6" fill="#fff" stroke="#cbd9ea"/><text x="412" y="513">9 级过滤</text>
-              <rect x="493" y="495" width="140" height="28" rx="6" fill="#fff" stroke="#cbd9ea"/><text x="563" y="513">双层 PII</text>
-              <rect x="644" y="495" width="140" height="28" rx="6" fill="#fff3e4" stroke="#e8b36a"/><text x="714" y="513" fill="#92400e">人工审批</text>
-              <rect x="795" y="495" width="165" height="28" rx="6" fill="#fff" stroke="#cbd9ea"/><text x="877" y="513">多格式导出</text>
-            </g>
-            <path d="M714 523 C714 558 261 558 261 523" fill="none" stroke="#7c3aed" stroke-width="1.6" marker-end="url(#arr-purple)"/>
-            <rect x="372" y="539" width="70" height="14" rx="3" fill="#e9f2fb"/>
-            <text x="407" y="550" font-size="8" fill="#7c3aed" text-anchor="middle">退回重洗</text>
-
-            <!-- model -->
-            <rect x="20" y="595" width="980" height="95" rx="12" fill="#f2ecfa" stroke="#d9c9ef"/>
-            <g class="arch-project" data-project="p5">
-              <rect class="arch-hit" x="20" y="595" width="980" height="28" rx="10"/>
-              <text x="34" y="615" font-size="11" font-weight="700" fill="#5b21b6">05 模型进化 · SFT / DPO</text>
-              <text x="925" y="615" font-size="8.5" fill="#6d28d9">查看链路 ↗</text>
-            </g>
-            <g font-size="9.5" fill="#3b2a52" text-anchor="middle">
-              <rect x="40" y="625" width="140" height="28" rx="6" fill="#fff" stroke="#d9c9ef"/><text x="110" y="643">语料抽取</text>
-              <rect x="191" y="625" width="140" height="28" rx="6" fill="#fff" stroke="#d9c9ef"/><text x="261" y="643">防泄漏切分</text>
-              <rect x="342" y="625" width="140" height="28" rx="6" fill="#fff" stroke="#d9c9ef"/><text x="412" y="643">SFT</text>
-              <rect x="493" y="625" width="140" height="28" rx="6" fill="#fff" stroke="#d9c9ef"/><text x="563" y="643">DPO</text>
-              <rect x="644" y="625" width="140" height="28" rx="6" fill="#fff3e4" stroke="#e8b36a"/><text x="714" y="643" fill="#92400e">五维盲评</text>
-              <rect x="795" y="625" width="165" height="28" rx="6" fill="#fff" stroke="#d9c9ef"/><text x="877" y="643">Adapter</text>
-            </g>
-            <path d="M714 653 C714 685 261 685 261 653" fill="none" stroke="#7c3aed" stroke-width="1.6" marker-end="url(#arr-purple)"/>
-            <rect x="372" y="667" width="70" height="14" rx="3" fill="#f2ecfa"/>
-            <text x="407" y="678" font-size="8" fill="#7c3aed" text-anchor="middle">退回重训</text>
-
-            <!-- records -->
-            <rect x="1020" y="70" width="160" height="615" rx="12" fill="#f1f3f6" stroke="#d5dae1"/>
-            <text x="1032" y="90" font-size="11" font-weight="700" fill="#334155">数据沉淀</text>
-            <g font-size="9" fill="#334155" text-anchor="middle">
-              <ellipse cx="1100" cy="106" rx="58" ry="5" fill="#fff" stroke="#c9d0d8"/><rect x="1042" y="106" width="116" height="28" fill="#fff" stroke="#c9d0d8"/><ellipse cx="1100" cy="134" rx="58" ry="5" fill="#fff" stroke="#c9d0d8"/><text x="1100" y="126">事件记录</text>
-              <ellipse cx="1100" cy="151" rx="58" ry="5" fill="#fff" stroke="#c9d0d8"/><rect x="1042" y="151" width="116" height="28" fill="#fff" stroke="#c9d0d8"/><ellipse cx="1100" cy="179" rx="58" ry="5" fill="#fff" stroke="#c9d0d8"/><text x="1100" y="171">运行记录</text>
-              <ellipse cx="1100" cy="196" rx="58" ry="5" fill="#fff" stroke="#c9d0d8"/><rect x="1042" y="196" width="116" height="28" fill="#fff" stroke="#c9d0d8"/><ellipse cx="1100" cy="224" rx="58" ry="5" fill="#fff" stroke="#c9d0d8"/><text x="1100" y="216">Trace 日志</text>
-              <ellipse cx="1100" cy="306" rx="58" ry="5" fill="#fff" stroke="#c9d0d8"/><rect x="1042" y="306" width="116" height="28" fill="#fff" stroke="#c9d0d8"/><ellipse cx="1100" cy="334" rx="58" ry="5" fill="#fff" stroke="#c9d0d8"/><text x="1100" y="326">会话记录</text>
-              <ellipse cx="1100" cy="356" rx="58" ry="5" fill="#fff" stroke="#c9d0d8"/><rect x="1042" y="356" width="116" height="28" fill="#fff" stroke="#c9d0d8"/><ellipse cx="1100" cy="384" rx="58" ry="5" fill="#fff" stroke="#c9d0d8"/><text x="1100" y="376">工单记录</text>
-              <ellipse cx="1100" cy="406" rx="58" ry="5" fill="#fff" stroke="#c9d0d8"/><rect x="1042" y="406" width="116" height="28" fill="#fff" stroke="#c9d0d8"/><ellipse cx="1100" cy="434" rx="58" ry="5" fill="#fff" stroke="#c9d0d8"/><text x="1100" y="426">内容记录</text>
-              <ellipse cx="1100" cy="486" rx="58" ry="5" fill="#fff" stroke="#c9d0d8"/><rect x="1042" y="486" width="116" height="28" fill="#fff" stroke="#c9d0d8"/><ellipse cx="1100" cy="514" rx="58" ry="5" fill="#fff" stroke="#c9d0d8"/><text x="1100" y="506">语料库</text>
-              <ellipse cx="1100" cy="536" rx="58" ry="5" fill="#fff" stroke="#c9d0d8"/><rect x="1042" y="536" width="116" height="28" fill="#fff" stroke="#c9d0d8"/><ellipse cx="1100" cy="564" rx="58" ry="5" fill="#fff" stroke="#c9d0d8"/><text x="1100" y="556">评测集</text>
-              <ellipse cx="1100" cy="606" rx="58" ry="5" fill="#fff" stroke="#c9d0d8"/><rect x="1042" y="606" width="116" height="28" fill="#fff" stroke="#c9d0d8"/><ellipse cx="1100" cy="634" rx="58" ry="5" fill="#fff" stroke="#c9d0d8"/><text x="1100" y="626">模型适配器</text>
-              <ellipse cx="1100" cy="651" rx="58" ry="5" fill="#fff" stroke="#c9d0d8"/><rect x="1042" y="651" width="116" height="28" fill="#fff" stroke="#c9d0d8"/><ellipse cx="1100" cy="679" rx="58" ry="5" fill="#fff" stroke="#c9d0d8"/><text x="1100" y="671">决定记录</text>
-            </g>
-
-            <!-- write records: dashed -->
-            <g stroke="#94a3b8" stroke-width="1" stroke-dasharray="4 4">
-              <line x1="1000" y1="98" x2="1018" y2="120" marker-end="url(#arr-dash)"/>
-              <line x1="1000" y1="166" x2="1018" y2="165" marker-end="url(#arr-dash)"/>
-              <line x1="1000" y1="210" x2="1018" y2="210" marker-end="url(#arr-dash)"/>
-              <line x1="1000" y1="320" x2="1018" y2="320" marker-end="url(#arr-dash)"/>
-              <line x1="1000" y1="370" x2="1018" y2="370" marker-end="url(#arr-dash)"/>
-              <line x1="1000" y1="420" x2="1018" y2="420" marker-end="url(#arr-dash)"/>
-              <line x1="1000" y1="500" x2="1018" y2="500" marker-end="url(#arr-dash)"/>
-              <line x1="1000" y1="550" x2="1018" y2="550" marker-end="url(#arr-dash)"/>
-              <line x1="1000" y1="620" x2="1018" y2="620" marker-end="url(#arr-dash)"/>
-              <line x1="1000" y1="665" x2="1018" y2="665" marker-end="url(#arr-dash)"/>
-            </g>
-
-            <!-- main flow -->
-            <g fill="none" stroke="#111827" stroke-width="1.7">
-              <path d="M510 126 L510 146" marker-end="url(#arr)"/>
-              <path d="M510 228 L510 250" marker-end="url(#arr)"/>
-              <path d="M510 442 L510 465" marker-end="url(#arr)"/>
-              <path d="M510 573 L510 595" marker-end="url(#arr)"/>
-            </g>
-            <g class="flow-live" fill="none" stroke="#0ea5a4" stroke-width="1.3">
-              <path d="M510 126 L510 146"/>
-              <path d="M510 228 L510 250"/>
-              <path d="M510 442 L510 465"/>
-              <path d="M510 573 L510 595"/>
-            </g>
-
-            <!-- model feedback back to business -->
-            <path d="M877 639 L1008 639 L1008 380 L950 380" fill="none" stroke="#7c3aed" stroke-width="1.7" marker-end="url(#arr-purple)"/>
-            <text x="1000" y="520" font-size="8.5" fill="#7c3aed" stroke="#f1f3f6" stroke-width="3" paint-order="stroke" text-anchor="middle" transform="rotate(-90 1000 520)">模型反哺 01 / 02 / 03</text>
-
-            <!-- human decision arrows -->
-            <path d="M785 509 L795 509" fill="none" stroke="#d97706" stroke-width="1.5" marker-end="url(#arr-orange)"/>
-            <path d="M785 639 L795 639" fill="none" stroke="#d97706" stroke-width="1.5" marker-end="url(#arr-orange)"/>
-
-            <!-- feedback reflow -->
-            <rect x="1042" y="684" width="116" height="22" rx="6" fill="#fff3e4" stroke="#e8b36a"/>
-            <text x="1100" y="699" font-size="8.5" fill="#92400e" text-anchor="middle">Badcase 回流</text>
-            </g>
-          </svg>
-        </div>
-
-        <!-- Mobile vertical architecture -->
-        <div class="arch-mobile">
-          <div class="m-legend">
-            <span class="legend-item"><i class="l-main"></i>主流程</span>
-            <span class="legend-item"><i class="l-return"></i>反哺 / 重派</span>
-            <span class="legend-item"><i class="l-human"></i>人的决定</span>
-            <span class="legend-item"><i class="l-record"></i>写入记录</span>
-          </div>
-
-          <div class="m-block m-events">
-            <div class="m-head"><span>事件</span><span class="m-hint">触发</span></div>
-            <div class="m-chips">
-              <span class="m-chip">买家咨询</span><span class="m-chip">售后报障</span><span class="m-chip">内容选题</span>
-              <span class="m-chip">数据接入</span><span class="m-chip">模型评测</span><span class="m-chip">平台调用</span>
-            </div>
-          </div>
-          <div class="m-arrow" aria-hidden="true"></div>
-
-          <div class="m-block m-platform m-click" data-project="p6">
-            <div class="m-head"><span>06 · MCP 共享服务 / 统一网关</span><span class="m-hint">查看链路 ↗</span></div>
-            <div class="m-chips">
-              <span class="m-chip">鉴权</span><span class="m-chip">幂等去重</span><span class="m-chip">服务 / 模型路由</span>
-              <span class="m-chip">Trace</span><span class="m-chip">配额 429</span><span class="m-chip">MCP 转发</span>
-            </div>
-            <p class="m-note">4 类共享能力：LLM / RAG / Memory / Prompt</p>
-          </div>
-          <div class="m-arrow" aria-hidden="true"></div>
-
-          <div class="m-block m-business">
-            <div class="m-head"><span>业务执行 · 01 / 02 / 03</span><span class="m-hint">点击项目标题</span></div>
-            <div class="m-lane m-click" data-project="p1">
-              <div class="m-lane-head">01 导购 Agent ↗</div>
-              <div class="m-chips"><span class="m-chip">上下文</span><span class="m-chip">Hybrid RAG</span><span class="m-chip">Agent Loop</span><span class="m-chip">5 Tools + 兜底</span></div>
-            </div>
-            <div class="m-lane m-click" data-project="p2">
-              <div class="m-lane-head">02 RTC 语音售后 ↗</div>
-              <div class="m-chips"><span class="m-chip">ASR</span><span class="m-chip">共享 RAG</span><span class="m-chip">LLM 流式</span><span class="m-chip">TTS</span><span class="m-chip">Barge-in</span></div>
-            </div>
-            <div class="m-lane m-click" data-project="p3">
-              <div class="m-lane-head">03 AIGC 内容工作流 ↗</div>
-              <div class="m-chips"><span class="m-chip">选题</span><span class="m-chip">写作</span><span class="m-chip m-human">HITL 审稿</span><span class="m-chip">配图</span><span class="m-chip">本地化</span></div>
-            </div>
-          </div>
-          <div class="m-arrow" aria-hidden="true"></div>
-
-          <div class="m-block m-data m-click" data-project="p4">
-            <div class="m-head"><span>04 数据中台 · 语料沉淀</span><span class="m-hint">查看链路 ↗</span></div>
-            <div class="m-chips">
-              <span class="m-chip">多源接入</span><span class="m-chip">清洗切片</span><span class="m-chip">9 级过滤</span>
-              <span class="m-chip">双层 PII</span><span class="m-chip m-human">人工审批</span><span class="m-chip">多格式导出</span>
-            </div>
-            <span class="m-return">↺ 审批不通过 → 退回重洗</span>
-          </div>
-          <div class="m-arrow" aria-hidden="true"></div>
-
-          <div class="m-block m-model m-click" data-project="p5">
-            <div class="m-head"><span>05 模型进化 · SFT / DPO</span><span class="m-hint">查看链路 ↗</span></div>
-            <div class="m-chips">
-              <span class="m-chip">语料抽取</span><span class="m-chip">防泄漏</span><span class="m-chip">SFT</span>
-              <span class="m-chip">DPO</span><span class="m-chip m-human">五维盲评</span><span class="m-chip">Adapter</span>
-            </div>
-            <span class="m-return">↺ 模型适配器反哺 01 / 02 / 03</span>
-          </div>
-
-          <div class="m-block m-records">
-            <div class="m-head"><span>数据沉淀</span><span class="m-hint">写入记录 ⋯</span></div>
-            <div class="m-records-grid">
-              <span class="m-record">事件记录</span><span class="m-record">运行记录</span><span class="m-record">Trace 日志</span>
-              <span class="m-record">会话记录</span><span class="m-record">工单记录</span><span class="m-record">内容记录</span>
-              <span class="m-record">语料库</span><span class="m-record">评测集</span><span class="m-record">模型适配器</span>
-              <span class="m-record">决定记录</span><span class="m-record m-human">Badcase 回流</span>
-            </div>
-          </div>
-        </div>
+    <!-- Key Telemetry Metrics Ribbon -->
+    <div class="metrics-ribbon">
+      <div class="metric-pill">
+        <span class="metric-num">3.5年</span>
+        <span class="metric-desc">全职研发经验</span>
       </div>
-    </section>
-
-    <!-- 02 项目 -->
-    <section id="projects" class="section">
-      <p class="section-kicker">02 / PROJECTS · 06</p>
-      <h3 class="section-title">六个项目，一条链路</h3>
-      <p class="section-sub">点开任意一张卡，看它的 runtime 链路、每一步实现与代码位置。</p>
-
-      <div class="project-grid">
-        <button class="pcard" type="button" data-project="p1" style="--accent:#f3b33d">
-          <span class="pcard-top"><span>01</span><span>业务层</span></span>
-          <span class="pcard-name">自进化导购 Agent</span>
-          <span class="pcard-line">Agent Loop 把价格、库存、禁忌下沉为 5 个确定性 Tool，40+ 分支收敛。</span>
-          <span class="pcard-foot"><strong>28.6%</strong><span>转化提升</span><em>运行链路 →</em></span>
-        </button>
-        <button class="pcard" type="button" data-project="p2" style="--accent:#65c9d7">
-          <span class="pcard-top"><span>02</span><span>业务层</span></span>
-          <span class="pcard-name">实时语音售后 Agent</span>
-          <span class="pcard-line">CustomLLM 回调串起 ASR → RAG → LLM → TTS，Barge-in 打断即停。</span>
-          <span class="pcard-foot"><strong>&lt;800ms</strong><span>端到端</span><em>运行链路 →</em></span>
-        </button>
-        <button class="pcard" type="button" data-project="p3" style="--accent:#f1cf68">
-          <span class="pcard-top"><span>03</span><span>业务层</span></span>
-          <span class="pcard-name">AIGC 内容工作流</span>
-          <span class="pcard-line">LangGraph 拆选题、写作、审稿、配图、本地化，两处 HITL 可恢复。</span>
-          <span class="pcard-foot"><strong>7.5×</strong><span>内容产能</span><em>运行链路 →</em></span>
-        </button>
-        <button class="pcard" type="button" data-project="p4" style="--accent:#7ee787">
-          <span class="pcard-top"><span>04</span><span>数据层</span></span>
-          <span class="pcard-name">AI 语料数据中台</span>
-          <span class="pcard-line">raw → staging → approved，9 级过滤 + 双层 PII，审核通过才供数。</span>
-          <span class="pcard-foot"><strong>99.1%</strong><span>PII 召回</span><em>运行链路 →</em></span>
-        </button>
-        <button class="pcard" type="button" data-project="p5" style="--accent:#c9a7ff">
-          <span class="pcard-top"><span>05</span><span>模型层</span></span>
-          <span class="pcard-name">销售风格 SFT / DPO</span>
-          <span class="pcard-line">本地 0.5B LoRA SFT + DPO 已跑通；3B QLoRA 与云端训练未执行。</span>
-          <span class="pcard-foot"><strong>58→91</strong><span>盲评对齐</span><em>运行链路 →</em></span>
-        </button>
-        <button class="pcard" type="button" data-project="p6" style="--accent:#ff8a7a">
-          <span class="pcard-top"><span>06</span><span>平台层</span></span>
-          <span class="pcard-name">MCP 共享服务与网关</span>
-          <span class="pcard-line">4 类 MCP 服务 + 统一网关：API Key → project、Trace、配额 429。</span>
-          <span class="pcard-foot"><strong>4 类</strong><span>共享服务</span><em>运行链路 →</em></span>
-        </button>
+      <div class="metric-pill">
+        <span class="metric-num">+28.6%</span>
+        <span class="metric-desc">导购成单转化</span>
       </div>
-    </section>
-
-    <!-- 03 能力栈 -->
-    <section id="stack" class="section section-tight">
-      <p class="section-kicker">03 / STACK</p>
-      <div class="stack-cloud">
-        <span>Agent Loop</span><span>Function Calling</span><span>LangGraph</span><span>HITL</span>
-        <span>Hybrid RAG</span><span>HNSW / BM25</span><span>Cross-Encoder</span><span>pgvector</span>
-        <span>RTC / VAD</span><span>Streaming ASR</span><span>TTS</span><span>Barge-in</span>
-        <span>LoRA / QLoRA</span><span>SFT / DPO</span><span>LLM-as-a-Judge</span><span>MCP</span>
-        <span>FastAPI</span><span>PostgreSQL</span><span>Docker</span><span>structlog</span>
+      <div class="metric-pill">
+        <span class="metric-num">&lt;800ms</span>
+        <span class="metric-desc">RTC 端到端语音</span>
       </div>
-    </section>
-
-    <!-- 04 开源 -->
-    <section id="opensource" class="section">
-      <p class="section-kicker">04 / OPEN SOURCE · 13 MERGED PRS</p>
-      <h3 class="section-title">开源贡献</h3>
-      <p class="section-sub">6 个上游仓库，13 个已合并 PR。覆盖 ReAct 解析、流式护栏、权限测试与结构化输出。</p>
-      <div class="oss-list">
-        <a class="oss" href="https://github.com/NVIDIA/NeMo-Agent-Toolkit/pulls?q=is%3Apr+author%3ACodeAlex52+is%3Amerged" target="_blank" rel="noopener noreferrer"><span>NVIDIA / NeMo Agent Toolkit</span><b>5 PR</b></a>
-        <a class="oss" href="https://github.com/bytedance/deer-flow/pulls?q=is%3Apr+author%3ACodeAlex52+is%3Amerged" target="_blank" rel="noopener noreferrer"><span>ByteDance / DeerFlow</span><b>4 PR</b></a>
-        <a class="oss" href="https://github.com/google/adk-js/pull/922" target="_blank" rel="noopener noreferrer"><span>Google / ADK-JS</span><b>1 PR</b></a>
-        <a class="oss" href="https://github.com/langgenius/dify/pull/43875" target="_blank" rel="noopener noreferrer"><span>Dify</span><b>1 PR</b></a>
-        <a class="oss" href="https://github.com/strands-agents/harness-sdk/pull/4263" target="_blank" rel="noopener noreferrer"><span>Strands Agents / harness-sdk</span><b>1 PR</b></a>
-        <a class="oss" href="https://github.com/OpenHands/software-agent-sdk/pull/6197" target="_blank" rel="noopener noreferrer"><span>OpenHands / software-agent-sdk</span><b>1 PR</b></a>
+      <div class="metric-pill">
+        <span class="metric-num">7.5×</span>
+        <span class="metric-desc">AIGC 矩阵产能</span>
       </div>
-      <a class="inline-link" href="https://github.com/search?q=author%3ACodeAlex52+type%3Apr+is%3Amerged&type=pullrequests" target="_blank" rel="noopener noreferrer">查看全部已合并 PR <span>↗</span></a>
-    </section>
+      <div class="metric-pill">
+        <span class="metric-num">35万+</span>
+        <span class="metric-desc">中台高纯语料</span>
+      </div>
+      <div class="metric-pill">
+        <span class="metric-num">13 PRs</span>
+        <span class="metric-desc">知名开源合并</span>
+      </div>
+    </div>
+  </section>
 
-    <!-- 05 经历 -->
-    <section id="experience" class="section">
-      <p class="section-kicker">05 / EXPERIENCE</p>
-      <div class="exp-row">
+  <!-- ========================================================================
+       01 核心交互：Agent 业务系统自运转飞轮 (CYBER FLYWHEEL)
+       ======================================================================== -->
+  <section id="flywheel" class="flywheel-section">
+    <div class="flywheel-deck">
+      <div class="deck-head">
         <div>
-          <h4>深圳市臻星瑞通科技有限公司</h4>
-          <p>AI 应用开发工程师 / Agent 架构</p>
+          <p class="deck-kicker">INTERACTIVE AGENT FLYWHEEL // REAL-TIME SYSTEM ENGINE</p>
+          <h2 class="deck-title">6 个项目 · 互成飞轮的运转全貌</h2>
+          <p class="deck-sub">从内容流量到导购转化、实时语音售后，再到数据治理与模型进化；点击任意卫星节点查看实时链路。</p>
         </div>
-        <span>2023.04 — 2026.10</span>
+        <div class="deck-controls">
+          <button class="ctrl-btn active" id="fly-toggle-btn" type="button" aria-label="切换飞轮自动旋转">
+            <span id="fly-toggle-icon">⏸</span>
+            <span id="fly-toggle-text">运转中</span>
+          </button>
+          <div class="ctrl-speed-group" role="group" aria-label="推演速度">
+            <button class="speed-pill active" data-speed="3500" type="button">1.0x</button>
+            <button class="speed-pill" data-speed="1800" type="button">2.0x</button>
+            <button class="speed-pill" data-speed="800" type="button">⚡ 超频</button>
+          </div>
+          <button class="ctrl-btn" id="fly-step-btn" type="button">单步推演 ➔</button>
+        </div>
       </div>
-      <p class="exp-line">跨境 PBM 光疗业务：智能导购、内容营销、售后客服、数据治理四条线；参与 Agent Runtime、MCP 共享服务与 LLM 统一网关建设。</p>
-      <p class="edu-line">张家界学院 · 软件工程 · 本科 · 2019.09 — 2023.06</p>
-    </section>
 
-    <!-- 06 联系 -->
-    <section id="contact" class="section">
-      <p class="section-kicker">06 / CONTACT</p>
-      <h3 class="section-title">聊聊 Agent 怎么落地。</h3>
-      <div class="contact-actions">
-        <a class="btn primary" href="mailto:suzhe52@foxmail.com">suzhe52@foxmail.com</a>
-        <button class="btn ghost" id="copy-email" type="button">复制邮箱</button>
-        <a class="btn ghost" href="assets/suzhe-resume.pdf" target="_blank" rel="noopener">下载 PDF</a>
+      <!-- SVG Cyber Flywheel Visual Stage -->
+      <div class="flywheel-stage">
+        <svg class="flywheel-svg" viewBox="0 0 1000 820" role="img" aria-label="6 个项目互成飞轮的系统交互图">
+          <defs>
+            <!-- Radial gradient for Central Hub -->
+            <radialGradient id="hubCoreGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#00f2fe" stop-opacity="0.35"/>
+              <stop offset="60%" stop-color="#0099ff" stop-opacity="0.12"/>
+              <stop offset="100%" stop-color="#030816" stop-opacity="0.95"/>
+            </radialGradient>
+
+            <!-- Orbit Gradient -->
+            <linearGradient id="orbitGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#c084fc" stop-opacity="0.8"/>
+              <stop offset="30%" stop-color="#fbbf24" stop-opacity="0.8"/>
+              <stop offset="60%" stop-color="#34d399" stop-opacity="0.8"/>
+              <stop offset="80%" stop-color="#38bdf8" stop-opacity="0.8"/>
+              <stop offset="100%" stop-color="#f43f5e" stop-opacity="0.8"/>
+            </linearGradient>
+
+            <!-- Feedback Arc Gradient -->
+            <linearGradient id="feedbackGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#f43f5e"/>
+              <stop offset="50%" stop-color="#c084fc"/>
+              <stop offset="100%" stop-color="#00f2fe"/>
+            </linearGradient>
+
+            <!-- Arrow Markers -->
+            <marker id="arrow-cyan" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 z" fill="#00f2fe"/>
+            </marker>
+            <marker id="arrow-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 z" fill="#c084fc"/>
+            </marker>
+            <marker id="arrow-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+            </marker>
+            <marker id="arrow-emerald" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+            </marker>
+          </defs>
+
+          <!-- 01 Background Radar Reticles & Ticks -->
+          <g class="spin-slow" opacity="0.25">
+            <circle cx="500" cy="410" r="375" fill="none" stroke="#00f2fe" stroke-width="1" stroke-dasharray="2 10"/>
+            <circle cx="500" cy="410" r="340" fill="none" stroke="#fff" stroke-width="1" stroke-dasharray="4 20"/>
+            <!-- Compass Ticks -->
+            <line x1="500" y1="30" x2="500" y2="40" stroke="#00f2fe" stroke-width="2"/>
+            <line x1="500" y1="780" x2="500" y2="790" stroke="#00f2fe" stroke-width="2"/>
+            <line x1="125" y1="410" x2="135" y2="410" stroke="#00f2fe" stroke-width="2"/>
+            <line x1="865" y1="410" x2="875" y2="410" stroke="#00f2fe" stroke-width="2"/>
+          </g>
+
+          <g class="spin-slow-reverse" opacity="0.3">
+            <circle cx="500" cy="410" r="175" fill="none" stroke="#38bdf8" stroke-width="1.2" stroke-dasharray="8 12"/>
+          </g>
+
+          <!-- 02 Main Orbital Flywheel Track (Radius = 270) -->
+          <circle cx="500" cy="410" r="270" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+          <circle cx="500" cy="410" r="270" fill="none" stroke="url(#orbitGrad)" stroke-width="2.5" opacity="0.7"/>
+          
+          <!-- Continuous Traveling Photon Particles along Orbit -->
+          <circle cx="500" cy="410" r="270" fill="none" stroke="#00f2fe" stroke-width="4" stroke-linecap="round" class="pulse-orbit-track" opacity="0.9"/>
+
+          <!-- 03 Model Evolution Feedback Loop (P05 -> P01 / P03) -->
+          <path d="M 235 490 C 130 330, 240 130, 600 210" fill="none" stroke="url(#feedbackGrad)" stroke-width="2.5" stroke-dasharray="6 6" marker-end="url(#arrow-purple)"/>
+          <rect x="290" y="145" width="220" height="24" rx="6" fill="rgba(192, 132, 252, 0.15)" stroke="rgba(192, 132, 252, 0.4)"/>
+          <text x="400" y="161" font-size="11" font-weight="700" fill="#c084fc" text-anchor="middle" font-family="var(--mono)">⟲ 模型进化 · LoRA Adapter 热反哺</text>
+
+          <!-- 04 Laser Spokes (Center P06 -> 5 Satellites) -->
+          <g stroke="rgba(0, 242, 254, 0.25)" stroke-width="1.5" class="spoke-pulse">
+            <!-- to P03 -->
+            <line x1="500" y1="410" x2="293" y2="236"/>
+            <!-- to P01 -->
+            <line x1="500" y1="410" x2="707" y2="236"/>
+            <!-- to P02 -->
+            <line x1="500" y1="410" x2="765" y2="490"/>
+            <!-- to P04 -->
+            <line x1="500" y1="410" x2="500" y2="680"/>
+            <!-- to P05 -->
+            <line x1="500" y1="410" x2="235" y2="490"/>
+          </g>
+
+          <!-- 05 Center Reactor: P06 MCP 统一底座与网关 -->
+          <g class="hub-group" data-project="p6" role="button" tabindex="0" aria-label="查看 06 MCP 统一底座详情">
+            <!-- Pulsing reactor aura -->
+            <circle cx="500" cy="410" r="115" fill="none" stroke="rgba(0, 242, 254, 0.2)" stroke-width="1" class="reactor-glow"/>
+            <circle cx="500" cy="410" r="98" fill="url(#hubCoreGrad)" stroke="#00f2fe" stroke-width="2" class="hub-body"/>
+            
+            <!-- Rotating Mechanical Gear Ring -->
+            <g class="spin-medium" opacity="0.6">
+              <circle cx="500" cy="410" r="88" fill="none" stroke="#00f2fe" stroke-width="1" stroke-dasharray="4 8"/>
+            </g>
+
+            <!-- Reactor Texts -->
+            <text x="500" y="375" font-size="10" font-weight="700" fill="#00f2fe" letter-spacing="1.5" text-anchor="middle" font-family="var(--mono)">CORE HUB · 06</text>
+            <text x="500" y="400" font-size="16" font-weight="900" fill="#ffffff" text-anchor="middle">MCP 统一网关</text>
+            <text x="500" y="420" font-size="11" fill="#94a3b8" text-anchor="middle">Trace 贯穿 · 配额 429 · 动态路由</text>
+            <rect x="430" y="435" width="140" height="20" rx="10" fill="rgba(0, 242, 254, 0.15)" stroke="rgba(0, 242, 254, 0.4)"/>
+            <text x="500" y="449" font-size="10" font-weight="700" fill="#00f2fe" text-anchor="middle">● 4 类共享服务接入中</text>
+          </g>
+
+          <!-- ====================================================================
+               5 Orbital Satellite Stations
+               ==================================================================== -->
+
+          <!-- 01 Satellite: P03 内容获客 (AIGC) -->
+          <g class="station-group" data-project="p3" role="button" tabindex="0" aria-label="查看 P03 内容工作流详情" style="--station-color: #c084fc; --station-glow: rgba(192, 132, 252, 0.5);">
+            <!-- Connecting beacon -->
+            <circle cx="293" cy="236" r="36" fill="none" stroke="#c084fc" stroke-width="1" opacity="0.4" class="reactor-glow"/>
+            <!-- Glass Card Body -->
+            <rect x="183" y="186" width="220" height="100" rx="16" class="station-card"/>
+            <text x="200" y="212" font-size="10.5" font-weight="700" fill="#c084fc" font-family="var(--mono)">03 / 业务层 · 流量引擎</text>
+            <text x="200" y="235" font-size="16" font-weight="800" fill="#ffffff">AIGC 内容工作流</text>
+            <text x="200" y="254" font-size="11" fill="#94a3b8">LangGraph 编排 · HITL 审稿</text>
+            <text x="200" y="275" font-size="18" font-weight="900" fill="#c084fc" font-family="var(--mono)">7.5×</text>
+            <text x="248" y="274" font-size="10.5" fill="#94a3b8">内容产能爆发</text>
+            <text x="385" y="214" font-size="12" fill="#c084fc">↗</text>
+          </g>
+
+          <!-- 02 Satellite: P01 导购转化 (Agent Loop) -->
+          <g class="station-group" data-project="p1" role="button" tabindex="0" aria-label="查看 P01 导购 Agent 详情" style="--station-color: #fbbf24; --station-glow: rgba(251, 191, 36, 0.5);">
+            <circle cx="707" cy="236" r="36" fill="none" stroke="#fbbf24" stroke-width="1" opacity="0.4" class="reactor-glow"/>
+            <rect x="597" y="186" width="220" height="100" rx="16" class="station-card"/>
+            <text x="614" y="212" font-size="10.5" font-weight="700" fill="#fbbf24" font-family="var(--mono)">01 / 业务层 · 交易引擎</text>
+            <text x="614" y="235" font-size="16" font-weight="800" fill="#ffffff">自进化导购 Agent</text>
+            <text x="614" y="254" font-size="11" fill="#94a3b8">5 确定性 Tool · Agent Loop</text>
+            <text x="614" y="275" font-size="18" font-weight="900" fill="#fbbf24" font-family="var(--mono)">+28.6%</text>
+            <text x="682" y="274" font-size="10.5" fill="#94a3b8">意向成单转化</text>
+            <text x="799" y="214" font-size="12" fill="#fbbf24">↗</text>
+          </g>
+
+          <!-- 03 Satellite: P02 售后留存 (RTC 语音) -->
+          <g class="station-group" data-project="p2" role="button" tabindex="0" aria-label="查看 P02 实时语音详情" style="--station-color: #34d399; --station-glow: rgba(52, 211, 153, 0.5);">
+            <circle cx="765" cy="490" r="36" fill="none" stroke="#34d399" stroke-width="1" opacity="0.4" class="reactor-glow"/>
+            <rect x="655" y="440" width="220" height="100" rx="16" class="station-card"/>
+            <text x="672" y="466" font-size="10.5" font-weight="700" fill="#34d399" font-family="var(--mono)">02 / 业务层 · 服务交互</text>
+            <text x="672" y="489" font-size="16" font-weight="800" fill="#ffffff">实时语音售后 (RTC)</text>
+            <text x="672" y="508" font-size="11" fill="#94a3b8">CustomLLM · Barge-in 打断</text>
+            <text x="672" y="529" font-size="18" font-weight="900" fill="#34d399" font-family="var(--mono)">&lt;800ms</text>
+            <text x="746" y="528" font-size="10.5" fill="#94a3b8">端到端语音响应</text>
+            <text x="857" y="468" font-size="12" fill="#34d399">↗</text>
+          </g>
+
+          <!-- 04 Satellite: P04 语料沉淀 (数据中台) -->
+          <g class="station-group" data-project="p4" role="button" tabindex="0" aria-label="查看 P04 数据中台详情" style="--station-color: #38bdf8; --station-glow: rgba(56, 189, 248, 0.5);">
+            <circle cx="500" cy="680" r="36" fill="none" stroke="#38bdf8" stroke-width="1" opacity="0.4" class="reactor-glow"/>
+            <rect x="390" y="630" width="220" height="100" rx="16" class="station-card"/>
+            <text x="407" y="656" font-size="10.5" font-weight="700" fill="#38bdf8" font-family="var(--mono)">04 / 数据层 · 语料中台</text>
+            <text x="407" y="679" font-size="16" font-weight="800" fill="#ffffff">AI 语料数据中台</text>
+            <text x="407" y="698" font-size="11" fill="#94a3b8">9 级过滤 · 双层 PII 脱敏</text>
+            <text x="407" y="719" font-size="18" font-weight="900" fill="#38bdf8" font-family="var(--mono)">35万+</text>
+            <text x="468" y="718" font-size="10.5" fill="#94a3b8">高纯语料沉淀</text>
+            <text x="592" y="658" font-size="12" fill="#38bdf8">↗</text>
+          </g>
+
+          <!-- 05 Satellite: P05 模型进化 (SFT / DPO) -->
+          <g class="station-group" data-project="p5" role="button" tabindex="0" aria-label="查看 P05 模型微调详情" style="--station-color: #f43f5e; --station-glow: rgba(244, 63, 94, 0.5);">
+            <circle cx="235" cy="490" r="36" fill="none" stroke="#f43f5e" stroke-width="1" opacity="0.4" class="reactor-glow"/>
+            <rect x="125" y="440" width="220" height="100" rx="16" class="station-card"/>
+            <text x="142" y="466" font-size="10.5" font-weight="700" fill="#f43f5e" font-family="var(--mono)">05 / 模型层 · 进化引擎</text>
+            <text x="142" y="489" font-size="16" font-weight="800" fill="#ffffff">销售风格 SFT / DPO</text>
+            <text x="142" y="508" font-size="11" fill="#94a3b8">销冠表达拟合 · 偏好对齐</text>
+            <text x="142" y="529" font-size="18" font-weight="900" fill="#f43f5e" font-family="var(--mono)">58 → 91</text>
+            <text x="218" y="528" font-size="10.5" fill="#94a3b8">五维盲评跃升</text>
+            <text x="327" y="468" font-size="12" fill="#f43f5e">↗</text>
+          </g>
+        </svg>
+      </div>
+
+      <!-- Real-Time Telemetry HUD Console (实时遥测监视台) -->
+      <div class="telemetry-hud">
+        <div class="hud-topbar">
+          <div class="hud-title">
+            <div class="window-dots">
+              <span class="dot-red"></span>
+              <span class="dot-yellow"></span>
+              <span class="dot-green"></span>
+            </div>
+            <span>RUNTIME TELEMETRY // MULTI-AGENT PIPELINE CONSOLE</span>
+          </div>
+          <div class="hud-status">
+            <span class="pulse-dot"></span>
+            <span>STREAMING REAL-TIME</span>
+          </div>
+        </div>
+
+        <!-- Spotlight Item Bar -->
+        <div class="hud-spotlight" id="hud-spotlight">
+          <div class="spotlight-info">
+            <span class="spotlight-badge" id="spotlight-tag">P03 · 内容获客</span>
+            <span class="spotlight-name" id="spotlight-name">AIGC 内容工作流</span>
+            <span class="spotlight-action" id="spotlight-action">正在执行多模态脚本生成...</span>
+          </div>
+          <div class="spotlight-meta">
+            <span class="spotlight-metric" id="spotlight-metric">7.5×</span>
+            <button class="btn-open-runtime" id="btn-spotlight-open" type="button" data-project="p3">查看工程源码 ↗</button>
+          </div>
+        </div>
+
+        <!-- Terminal Log Feed -->
+        <div class="hud-terminal-log" id="hud-terminal-log" aria-live="polite">
+          <!-- Live items injected via app.js -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       02 项目工程矩阵 (PROJECTS BENTO GRID)
+       ======================================================================== -->
+  <section id="projects" class="section-wrap">
+    <div class="section-head">
+      <p class="section-kicker">02 / PRODUCTION SYSTEM ARCHITECTURE</p>
+      <h2 class="section-title">六大核心项目工程矩阵</h2>
+      <p class="section-sub">每个项目均具备明确的业务目标、严谨的架构设计与真实可复现工程边界，点击任意卡片深入 runtime 链路。</p>
+    </div>
+
+    <div class="project-grid">
+      <!-- Card 01 -->
+      <article class="bento-card" data-project="p1" style="--accent: #fbbf24; --accent-glow: rgba(251, 191, 36, 0.35);">
+        <div>
+          <div class="bento-head">
+            <span class="bento-code">01 · 业务层</span>
+            <span class="bento-role-tag">导购转化引擎</span>
+          </div>
+          <div class="bento-metric-box">
+            <span class="bento-metric-num">+28.6%</span>
+            <span class="bento-metric-label">咨询意向成单转化率提升 · 决策周期 -40%</span>
+          </div>
+          <h3 class="bento-title">自进化导购 Agent</h3>
+          <p class="bento-desc">面向红光面罩、光疗垫等高客单产品，把 40+ 状态机分支下沉为 5 个确定性 Tool，构建 Harness Loop 自主决策闭环。</p>
+          <ul class="bento-bullets">
+            <li>LLMProvider + Tool 双抽象与注册表解耦业务，单步支持多工具并行与模型自纠。</li>
+            <li>内置最大步数、超时和低置信度转人工三层熔断兜底，失败样本回流教学库。</li>
+            <li>基于「问题+标准话术+SOP」一次教学提取原则，服务时 Top-K 向量召回相似案例。</li>
+          </ul>
+        </div>
+        <div>
+          <div class="bento-chips">
+            <span>FastAPI</span><span>Agent Loop</span><span>Hybrid RAG</span><span>pgvector</span>
+          </div>
+          <div class="bento-foot">
+            <span class="evidence-tag">本地可完整复现</span>
+            <span class="bento-link">深入链路与源码 →</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 02 -->
+      <article class="bento-card" data-project="p2" style="--accent: #34d399; --accent-glow: rgba(52, 211, 153, 0.35);">
+        <div>
+          <div class="bento-head">
+            <span class="bento-code">02 · 业务层</span>
+            <span class="bento-role-tag">实时语音交互</span>
+          </div>
+          <div class="bento-metric-box">
+            <span class="bento-metric-num">&lt;800ms</span>
+            <span class="bento-metric-label">免检索端到端延迟 · 非质量退货率 -34%</span>
+          </div>
+          <h3 class="bento-title">实时语音售后 Agent (RTC)</h3>
+          <p class="bento-desc">集成火山引擎 RTC、豆包大模型与 CustomLLM 回调服务，串起 ASR → RAG → LLM → TTS 低延迟语音管线。</p>
+          <ul class="bento-bullets">
+            <li>RTC 云端 VAD 捕捉开口瞬间，前端停播并清空缓冲，DataChannel 下发信令即刻截断流。</li>
+            <li>pgvector 单表 1024 维 HNSW 索引，Int8 量化降低存储 75%，粗召+重排二阶段提速。</li>
+            <li>传输层复用 RTC 弱网抗丢包与自适应抖动缓冲，保障海外跨国通话极速稳定。</li>
+          </ul>
+        </div>
+        <div>
+          <div class="bento-chips">
+            <span>Volc RTC</span><span>CustomLLM</span><span>Streaming ASR</span><span>Barge-in</span>
+          </div>
+          <div class="bento-foot">
+            <span class="evidence-tag">本地可完整复现</span>
+            <span class="bento-link">深入链路与源码 →</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 03 -->
+      <article class="bento-card" data-project="p3" style="--accent: #c084fc; --accent-glow: rgba(192, 132, 252, 0.35);">
+        <div>
+          <div class="bento-head">
+            <span class="bento-code">03 · 业务层</span>
+            <span class="bento-role-tag">内容生产引擎</span>
+          </div>
+          <div class="bento-metric-box">
+            <span class="bento-metric-num">7.5×</span>
+            <span class="bento-metric-label">图文与视频脚本产能爆发 · 2处 HITL 审稿</span>
+          </div>
+          <h3 class="bento-title">AIGC 社媒内容生产工作流</h3>
+          <p class="bento-desc">基于 LangGraph 构建选题、草稿、审稿、配图、本地化有向无环图，两处人工介入机制保障出海营销质量。</p>
+          <ul class="bento-bullets">
+            <li>打通多平台公域流量至私域的获客矩阵，批量生成高转化合规图文与脚本。</li>
+            <li>HITL（Human-in-the-Loop）在审稿节点支持修改、打回或批准，流程断点可恢复。</li>
+            <li>SSE 流式实时回传生成进度，模块解耦易于横向扩充多语言与跨渠道分发。</li>
+          </ul>
+        </div>
+        <div>
+          <div class="bento-chips">
+            <span>LangGraph</span><span>HITL</span><span>SSE Stream</span><span>Prompt 模板</span>
+          </div>
+          <div class="bento-foot">
+            <span class="evidence-tag">本地可完整复现</span>
+            <span class="bento-link">深入链路与源码 →</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 04 -->
+      <article class="bento-card" data-project="p4" style="--accent: #38bdf8; --accent-glow: rgba(56, 189, 248, 0.35);">
+        <div>
+          <div class="bento-head">
+            <span class="bento-code">04 · 数据层</span>
+            <span class="bento-role-tag">语料治理中台</span>
+          </div>
+          <div class="bento-metric-box">
+            <span class="bento-metric-num">35万+</span>
+            <span class="bento-metric-label">高质量语料沉淀 · 99.1% PII 隐私脱敏召回</span>
+          </div>
+          <h3 class="bento-title">AI 语料数据治理中台</h3>
+          <p class="bento-desc">贯通 Shopify、社媒与客服工单的统一数据接入清洗管线，构建 raw → staging → approved 严密治理流程。</p>
+          <ul class="bento-bullets">
+            <li>9 级优先级规则过滤 + 正则与轻量 NER 双层脱敏，价格折扣等硬红线绝不穿透。</li>
+            <li>staging 区自动分类与打分，人工 approve 门禁后一键导出 Alpaca / ShareGPT / DPO 格式。</li>
+            <li>留存失败样本与 Badcase，自动化回流至知识库修复任务与回归评测集。</li>
+          </ul>
+        </div>
+        <div>
+          <div class="bento-chips">
+            <span>ETL 管线</span><span>9级过滤</span><span>双层 PII</span><span>PostgreSQL</span>
+          </div>
+          <div class="bento-foot">
+            <span class="evidence-tag">本地可完整复现</span>
+            <span class="bento-link">深入链路与源码 →</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 05 -->
+      <article class="bento-card" data-project="p5" style="--accent: #f43f5e; --accent-glow: rgba(244, 63, 94, 0.35);">
+        <div>
+          <div class="bento-head">
+            <span class="bento-code">05 · 模型层</span>
+            <span class="bento-role-tag">模型自进化引擎</span>
+          </div>
+          <div class="bento-metric-box">
+            <span class="bento-metric-num">58 → 91</span>
+            <span class="bento-metric-label">五维盲评销冠对齐跃升 · LoRA + DPO</span>
+          </div>
+          <h3 class="bento-title">销售风格 SFT / DPO 微调</h3>
+          <p class="bento-desc">坚守「微调管风格、RAG 管知识、Tool 管实时」原则，用高质量销售真实语料微调模型表达共情与促单技巧。</p>
+          <ul class="bento-bullets">
+            <li>严格留出 20 条唯一 Prompt 做防泄漏评测集，训练集交集为 0 确保评测客观公正。</li>
+            <li>SFT 学习销冠表达节奏，DPO 惩罚虚假承诺、贬低竞品与强推逼单等劣质偏好。</li>
+            <li>五维盲评（产品、异议、促单、合规、共情）结合位置交换，消除裁判位置偏差。</li>
+          </ul>
+        </div>
+        <div>
+          <div class="bento-chips">
+            <span>LLaMA-Factory</span><span>Qwen2.5</span><span>LoRA</span><span>DPO 对齐</span>
+          </div>
+          <div class="bento-foot">
+            <span class="evidence-tag">本地已跑通验证</span>
+            <span class="bento-link">深入链路与源码 →</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 06 -->
+      <article class="bento-card" data-project="p6" style="--accent: #00f2fe; --accent-glow: rgba(0, 242, 254, 0.35);">
+        <div>
+          <div class="bento-head">
+            <span class="bento-code">06 · 平台层</span>
+            <span class="bento-role-tag">统一网关与底座</span>
+          </div>
+          <div class="bento-metric-box">
+            <span class="bento-metric-num">4 类</span>
+            <span class="bento-metric-label">LLM / RAG / Memory / Prompt 共享微服务</span>
+          </div>
+          <h3 class="bento-title">企业级 MCP 共享服务与网关</h3>
+          <p class="bento-desc">解决各业务重复造轮子与 Key 分散问题，把通用底座下沉为 MCP 共享服务，收敛统一入口与多租户配额。</p>
+          <ul class="bento-bullets">
+            <li>API Key 鉴权映射项目身份，全链路 X-Trace-ID 贯穿瀑布追踪，支持 Token 429 配额前置拦截。</li>
+            <li>逻辑模型名屏蔽底层供应商差异，支持动态路由与故障平滑切换。</li>
+            <li>跨 Agent 用户事实互通（user_facts），导购识别禁忌直传售后，消除业务孤岛。</li>
+          </ul>
+        </div>
+        <div>
+          <div class="bento-chips">
+            <span>FastAPI</span><span>MCP 协议</span><span>Trace 追踪</span><span>Token 配额</span>
+          </div>
+          <div class="bento-foot">
+            <span class="evidence-tag">本地可完整复现</span>
+            <span class="bento-link">深入链路与源码 →</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       03 技术全景能力栈 (TECH STACK RADAR)
+       ======================================================================== -->
+  <section id="stack" class="section-wrap">
+    <div class="section-head">
+      <p class="section-kicker">03 / TECHNICAL CAPABILITY RADAR</p>
+      <h2 class="section-title">全栈 Agent 工程与底层技术栈</h2>
+      <p class="section-sub">覆盖编排调度、实时多模态交互、模型微调评估与高并发基础架构。</p>
+    </div>
+
+    <div class="stack-grid">
+      <div class="stack-card">
+        <div class="stack-head">01 · AGENT 编排与控制</div>
+        <div class="stack-tags">
+          <span>Agent Loop</span><span>Function Calling</span><span>ReAct 循环</span>
+          <span>LangGraph</span><span>HITL 人机协同</span><span>状态机收敛</span>
+          <span>确定性 Tool</span><span>Prompt 版本化</span>
+        </div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-head">02 · 实时交互与 RAG</div>
+        <div class="stack-tags">
+          <span>RTC 实时语音</span><span>Streaming ASR</span><span>TTS 合成</span>
+          <span>VAD 静音切分</span><span>Barge-in 打断</span><span>pgvector HNSW</span>
+          <span>Hybrid RAG</span><span>Cross-Encoder 重排</span>
+        </div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-head">03 · 模型微调与治理</div>
+        <div class="stack-tags">
+          <span>LoRA / QLoRA</span><span>SFT 监督微调</span><span>DPO 偏好对齐</span>
+          <span>LLaMA-Factory</span><span>五维盲评体系</span><span>双层 PII 脱敏</span>
+          <span>9 级语料过滤</span><span>Badcase 闭环</span>
+        </div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-head">04 · 平台底座与工程</div>
+        <div class="stack-tags">
+          <span>MCP 共享服务</span><span>FastAPI 异步</span><span>Trace 全链路追踪</span>
+          <span>Token 配额 429</span><span>PostgreSQL</span><span>Docker Compose</span>
+          <span>SSE 流式传输</span><span>structlog 结构化日志</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       04 开源贡献 (OPEN SOURCE · 13 MERGED PRS)
+       ======================================================================== -->
+  <section id="opensource" class="section-wrap">
+    <div class="section-head">
+      <p class="section-kicker">04 / OPEN SOURCE ECOSYSTEM · 13 MERGED PRS</p>
+      <h2 class="section-title">顶级开源社区深度贡献</h2>
+      <p class="section-sub">向 NVIDIA、字节跳动、Google、Dify 等头部开源仓库贡献核心 PR，涵盖 ReAct 解析、流式护栏与状态管理。</p>
+    </div>
+
+    <div class="oss-grid">
+      <a class="oss-card" href="https://github.com/NVIDIA/NeMo-Agent-Toolkit/pulls?q=is%3Apr+author%3ACodeAlex52+is%3Amerged" target="_blank" rel="noopener noreferrer">
+        <div class="oss-info">
+          <span class="oss-repo">NVIDIA / NeMo-Agent-Toolkit</span>
+          <span class="oss-desc">流式护栏与 ReAct 解析优化</span>
+        </div>
+        <span class="oss-badge">5 PRs Merged</span>
+      </a>
+      <a class="oss-card" href="https://github.com/bytedance/deer-flow/pulls?q=is%3Apr+author%3ACodeAlex52+is%3Amerged" target="_blank" rel="noopener noreferrer">
+        <div class="oss-info">
+          <span class="oss-repo">ByteDance / DeerFlow</span>
+          <span class="oss-desc">工作流编排与状态持久化</span>
+        </div>
+        <span class="oss-badge">4 PRs Merged</span>
+      </a>
+      <a class="oss-card" href="https://github.com/google/adk-js/pull/922" target="_blank" rel="noopener noreferrer">
+        <div class="oss-info">
+          <span class="oss-repo">Google / ADK-JS</span>
+          <span class="oss-desc">结构化输出解析修复</span>
+        </div>
+        <span class="oss-badge">1 PR Merged</span>
+      </a>
+      <a class="oss-card" href="https://github.com/langgenius/dify/pull/43875" target="_blank" rel="noopener noreferrer">
+        <div class="oss-info">
+          <span class="oss-repo">Dify</span>
+          <span class="oss-desc">工具调用异常重试处理</span>
+        </div>
+        <span class="oss-badge">1 PR Merged</span>
+      </a>
+      <a class="oss-card" href="https://github.com/strands-agents/harness-sdk/pull/4263" target="_blank" rel="noopener noreferrer">
+        <div class="oss-info">
+          <span class="oss-repo">Strands Agents / harness-sdk</span>
+          <span class="oss-desc">上下文预算降载算法</span>
+        </div>
+        <span class="oss-badge">1 PR Merged</span>
+      </a>
+      <a class="oss-card" href="https://github.com/OpenHands/software-agent-sdk/pull/6197" target="_blank" rel="noopener noreferrer">
+        <div class="oss-info">
+          <span class="oss-repo">OpenHands / software-agent-sdk</span>
+          <span class="oss-desc">多环境执行沙箱适配</span>
+        </div>
+        <span class="oss-badge">1 PR Merged</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       05 工作与教育经历 (EXPERIENCE)
+       ======================================================================== -->
+  <section id="experience" class="section-wrap">
+    <div class="section-head">
+      <p class="section-kicker">05 / EXPERIENCE &amp; EDUCATION</p>
+      <h2 class="section-title">实战经历与履历背景</h2>
+    </div>
+
+    <div class="exp-box">
+      <div class="exp-item">
+        <div class="exp-top">
+          <div>
+            <h3 class="exp-company">深圳市臻星瑞通科技有限公司</h3>
+            <p class="exp-role">AI 应用开发工程师 / Agent 架构</p>
+          </div>
+          <span class="exp-period">2023.04 — 2026.10</span>
+        </div>
+        <p class="exp-desc">
+          负责跨境高客单 PBM 光疗业务的 AI 体系落地：牵头打造智能导购、社媒内容、售后排障、语料治理四条业务线；共建 Agent Runtime、MCP 共享服务与统一网关底座，实现跨业务多 Agent 协同与数据自进化。
+        </p>
+      </div>
+      <div class="edu-divider"></div>
+      <div class="edu-item">
+        <div><strong>张家界学院</strong> · 软件工程 · 本科</div>
+        <span>2019.09 — 2023.06</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       06 联系方式与页脚 (CONTACT)
+       ======================================================================== -->
+  <section id="contact" class="contact-section">
+    <div class="contact-box">
+      <h2 class="contact-title">聊聊 Agent 如何在业务中真正闭环落地</h2>
+      <p class="contact-sub">目前 Base 上海，开放 AI 应用开发 / Agent 架构岗位机会，欢迎交流碰撞！</p>
+      <div class="contact-btns">
+        <a class="btn-pill btn-primary" href="mailto:suzhe52@foxmail.com">suzhe52@foxmail.com</a>
+        <button class="btn-pill btn-glass" id="copy-email-btn" type="button">复制邮箱</button>
+        <a class="btn-pill btn-glass" href="tel:15367885946">15367885946</a>
+        <a class="btn-pill btn-glass" href="assets/suzhe-resume.pdf" target="_blank" rel="noopener">下载简历 PDF</a>
       </div>
       <div class="contact-links">
-        <a href="tel:15367885946">15367885946</a>
-        <a href="https://github.com/CodeAlex52" target="_blank" rel="noopener noreferrer">github.com/CodeAlex52</a>
-        <a href="https://github.com/CodeAlex52/resume-site" target="_blank" rel="noopener noreferrer">本站源码</a>
+        <a href="https://github.com/CodeAlex52" target="_blank" rel="noopener noreferrer">GitHub: @CodeAlex52</a>
+        <a href="https://github.com/CodeAlex52/resume-site" target="_blank" rel="noopener noreferrer">本站开源仓库</a>
       </div>
-      <footer class="footer">
-        <p>© <span id="year">2026</span> 苏哲 · 用 Claude Code 构建</p>
-        <p class="footer-note">KEY RESULTS 为生产口径；EVIDENCE 标注本地可复现边界。</p>
-      </footer>
-    </section>
-  </main>
+    </div>
+
+    <footer class="footer">
+      <p>© 2026 苏哲 · 依托 Cloudflare Pages 部署 · 本地复现工程均已严格验证</p>
+    </footer>
+  </section>
 </div>
 
+<!-- ==========================================================================
+     Project Runtime Detail Dialog Drawer
+     ========================================================================== -->
 <dialog class="project-dialog" id="project-dialog" aria-labelledby="dialog-title">
   <div class="dialog-inner">
-    <button class="dialog-close" id="dialog-close" type="button" aria-label="关闭">✕</button>
-    <div id="dialog-content"></div>
+    <button class="dialog-close" id="dialog-close" type="button" aria-label="关闭抽屉">✕</button>
+    <div id="dialog-content">
+      <!-- Injected via app.js -->
+    </div>
   </div>
 </dialog>
 
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<!-- Interactive Toast -->
+<div class="toast-msg" id="toast-msg" role="status" aria-live="polite"></div>
+
 <script src="data.js"></script>
 <script src="app.js"></script>
 </body>
