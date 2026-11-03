@@ -4,18 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>苏哲 — AI 应用开发工程师 / Agent 架构</title>
-<meta name="description" content="苏哲，AI 应用开发工程师 / Agent 架构。6 个项目互成飞轮：内容获客、导购转化、售后留存、数据沉淀、模型进化，MCP 平台底座统一托住。">
+<meta name="description" content="苏哲，AI 应用开发工程师 / Agent 架构。6 个项目的一张 Agent 业务系统架构图：事件 → 平台 → 业务执行 → 数据中台 → 模型进化，数据沉淀与人的决定贯穿全链路。">
 <meta name="author" content="苏哲">
 <meta name="theme-color" content="#0a192f">
 <link rel="canonical" href="https://suzhe-resume.pages.dev/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://suzhe-resume.pages.dev/">
 <meta property="og:title" content="苏哲 — AI 应用开发工程师 / Agent 架构">
-<meta property="og:description" content="6 个项目不是 6 份履历，而是一条转起来的飞轮。点开看每条 runtime 链路。">
+<meta property="og:description" content="6 个项目不是 6 份履历，而是一张跑起来的 Agent 业务系统架构图。">
 <meta property="og:image" content="https://suzhe-resume.pages.dev/assets/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="苏哲 — AI 应用开发工程师 / Agent 架构">
-<meta name="twitter:description" content="6 个项目不是 6 份履历，而是一条转起来的飞轮。">
+<meta name="twitter:description" content="6 个项目不是 6 份履历，而是一张跑起来的 Agent 业务系统架构图。">
 <meta name="twitter:image" content="https://suzhe-resume.pages.dev/assets/og.png">
 <script type="application/ld+json">
 {
@@ -38,143 +38,308 @@
 <body>
 <div class="bg-glow" aria-hidden="true"></div>
 
-<div class="layout">
-  <aside class="side">
-    <div class="side-inner">
-      <p class="eyebrow">AI APPLICATION ENGINEER</p>
+<div class="page">
+  <header class="site-head">
+    <div class="head-main">
       <h1 class="name">苏哲</h1>
-      <h2 class="role">AI 应用开发工程师<br><span>/ Agent 架构</span></h2>
-      <p class="tagline">6 个项目不是 6 份履历，<br>而是一条转起来的飞轮。</p>
-
-      <div class="hero-actions">
+      <p class="role">AI 应用开发工程师 <span>/ Agent 架构</span></p>
+      <p class="tagline">6 个项目不是 6 份履历，而是一张跑起来的业务系统图。</p>
+    </div>
+    <div class="head-side">
+      <nav class="nav" aria-label="页面导航">
+        <a href="#flywheel">架构</a>
+        <a href="#projects">项目</a>
+        <a href="#opensource">开源</a>
+        <a href="#experience">经历</a>
+        <a href="#contact">联系</a>
+      </nav>
+      <div class="head-actions">
         <a class="btn primary" href="#projects">看 6 个项目</a>
         <a class="btn ghost" href="assets/suzhe-resume.pdf" target="_blank" rel="noopener">PDF</a>
+        <a class="btn ghost" href="https://github.com/CodeAlex52" target="_blank" rel="noopener noreferrer">GitHub</a>
       </div>
-
-      <div class="side-stats">
+      <div class="head-stats">
         <span><b>3.5</b> 年</span>
         <span><b>6</b> 项目</span>
         <span><b>13</b> PR</span>
+        <span class="status"><i></i>上海 · 开放机会</span>
       </div>
-
-      <nav class="nav" aria-label="页面导航">
-        <a href="#flywheel"><span class="nav-num">01</span><span class="nav-line"></span>飞轮</a>
-        <a href="#projects"><span class="nav-num">02</span><span class="nav-line"></span>项目</a>
-        <a href="#opensource"><span class="nav-num">03</span><span class="nav-line"></span>开源</a>
-        <a href="#experience"><span class="nav-num">04</span><span class="nav-line"></span>经历</a>
-        <a href="#contact"><span class="nav-num">05</span><span class="nav-line"></span>联系</a>
-      </nav>
-
-      <div class="side-links">
-        <a href="https://github.com/CodeAlex52" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2.17c-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.12 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
-        </a>
-        <a href="mailto:suzhe52@foxmail.com" aria-label="Email">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 5.5A2.5 2.5 0 0 1 4.5 3h15A2.5 2.5 0 0 1 22 5.5v13a2.5 2.5 0 0 1-2.5 2.5h-15A2.5 2.5 0 0 1 2 18.5v-13Zm2.2-.5 7.8 6.1L19.8 5H4.2ZM20 6.9l-7.4 5.8a1 1 0 0 1-1.2 0L4 6.9v11.6c0 .28.22.5.5.5h15a.5.5 0 0 0 .5-.5V6.9Z"/></svg>
-        </a>
-        <a href="tel:15367885946" aria-label="Phone">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 2.5c.5-.2 1 .05 1.25.5l2 3.7c.22.4.12.9-.22 1.2l-1.3 1.15c1.05 2.2 2.75 3.9 4.95 4.95l1.15-1.3c.3-.34.8-.44 1.2-.22l3.7 2c.45.25.7.75.5 1.25l-1.35 3.4c-.2.5-.7.82-1.24.77-8.1-.75-13.7-6.35-14.45-14.45A1.2 1.2 0 0 1 3.2 3.85L6.6 2.5Z"/></svg>
-        </a>
-        <a class="pdf-link" href="assets/suzhe-resume.pdf" target="_blank" rel="noopener">PDF</a>
-      </div>
-
-      <p class="side-note"><span class="dot"></span>上海 · 开放 AI 应用 / Agent 岗位</p>
     </div>
-  </aside>
+  </header>
 
   <main>
-    <!-- 01 飞轮 -->
-    <section id="flywheel" class="fly-section">
-      <div class="section-head">
-        <p class="section-kicker">01 / THE FLYWHEEL</p>
-        <h3 class="section-title">6 个项目，怎么互成飞轮</h3>
-        <p class="section-sub">业务产生数据 → 数据训练模型 → 模型反哺业务。06 平台底座托住每一环。</p>
-      </div>
-
-      <div class="flywheel" id="flywheel-diagram">
-        <svg class="fly-svg" viewBox="0 0 900 900" aria-hidden="true">
-          <defs>
-            <marker id="fly-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-              <path d="M0 0 L10 5 L0 10 z" fill="#64ffda" opacity=".75"/>
-            </marker>
-            <radialGradient id="hub-glow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#64ffda" stop-opacity=".16"/>
-              <stop offset="65%" stop-color="#64ffda" stop-opacity=".04"/>
-              <stop offset="100%" stop-color="#64ffda" stop-opacity="0"/>
-            </radialGradient>
-          </defs>
-
-          <circle cx="450" cy="450" r="300" class="ring-base"/>
-          <circle cx="450" cy="450" r="300" class="ring-flow"/>
-          <circle cx="450" cy="450" r="190" class="ring-inner"/>
-          <circle cx="450" cy="450" r="190" fill="url(#hub-glow)"/>
-
-          <g class="spokes">
-            <line data-to="p3" x1="450" y1="450" x2="273.7" y2="207.3"/>
-            <line data-to="p1" x1="450" y1="450" x2="626.3" y2="207.3"/>
-            <line data-to="p2" x1="450" y1="450" x2="735.3" y2="542.7"/>
-            <line data-to="p4" x1="450" y1="450" x2="450" y2="750"/>
-            <line data-to="p5" x1="450" y1="450" x2="164.7" y2="542.7"/>
-          </g>
-
-          <g class="arcs">
-            <path data-from="p3" data-to="p1" d="M273.7 207.3 A300 300 0 0 1 626.3 207.3" marker-end="url(#fly-arrow)"/>
-            <path data-from="p1" data-to="p2" d="M626.3 207.3 A300 300 0 0 1 735.3 542.7" marker-end="url(#fly-arrow)"/>
-            <path data-from="p2" data-to="p4" d="M735.3 542.7 A300 300 0 0 1 450 750" marker-end="url(#fly-arrow)"/>
-            <path data-from="p4" data-to="p5" d="M450 750 A300 300 0 0 1 164.7 542.7" marker-end="url(#fly-arrow)"/>
-            <path data-from="p5" data-to="p3" d="M164.7 542.7 A300 300 0 0 1 273.7 207.3" marker-end="url(#fly-arrow)"/>
-          </g>
-
-          <g class="orbit">
-            <circle r="5"><animateMotion dur="18s" repeatCount="indefinite" path="M450 150 A300 300 0 1 1 449.99 150"/></circle>
-            <circle r="3.6"><animateMotion dur="18s" begin="-6s" repeatCount="indefinite" path="M450 150 A300 300 0 1 1 449.99 150"/></circle>
-            <circle r="2.6"><animateMotion dur="18s" begin="-12s" repeatCount="indefinite" path="M450 150 A300 300 0 1 1 449.99 150"/></circle>
-          </g>
-        </svg>
-
-        <button class="fly-node" type="button" data-project="p3" style="--x:30.41%;--y:23.03%;--accent:#f1cf68" aria-label="03 内容获客，7.5 倍内容产能">
-          <span class="fly-num">03</span>
-          <span class="fly-role">内容获客</span>
-          <span class="fly-metric">7.5×</span>
-        </button>
-        <button class="fly-node" type="button" data-project="p1" style="--x:69.59%;--y:23.03%;--accent:#f3b33d" aria-label="01 导购转化，转化率提升 28.6%">
-          <span class="fly-num">01</span>
-          <span class="fly-role">导购转化</span>
-          <span class="fly-metric">28.6%</span>
-        </button>
-        <button class="fly-node" type="button" data-project="p2" style="--x:81.70%;--y:60.30%;--accent:#65c9d7" aria-label="02 售后留存，800 毫秒内响应">
-          <span class="fly-num">02</span>
-          <span class="fly-role">售后留存</span>
-          <span class="fly-metric">&lt;800ms</span>
-        </button>
-        <button class="fly-node" type="button" data-project="p4" style="--x:50%;--y:83.33%;--accent:#7ee787" aria-label="04 数据沉淀，35 万条语料">
-          <span class="fly-num">04</span>
-          <span class="fly-role">数据沉淀</span>
-          <span class="fly-metric">35万+</span>
-        </button>
-        <button class="fly-node" type="button" data-project="p5" style="--x:18.30%;--y:60.30%;--accent:#c9a7ff" aria-label="05 模型进化，盲评 58 到 91">
-          <span class="fly-num">05</span>
-          <span class="fly-role">模型进化</span>
-          <span class="fly-metric">58→91</span>
-        </button>
-
-        <button class="fly-hub" type="button" data-project="p6" aria-label="06 平台底座，MCP 共享服务与统一网关">
-          <span class="hub-kicker">SHARED PLATFORM</span>
-          <span class="hub-title">06 · 平台底座</span>
-          <span class="hub-sub">MCP · 网关 · 鉴权 · Trace · 配额</span>
-        </button>
-      </div>
-
-      <div class="fly-caption" aria-live="polite">
-        <div class="fly-caption-text">
-          <span class="caption-index" id="caption-index">STEP 01 / 06 · 03 内容获客</span>
-          <p class="caption-copy" id="caption-copy">内容矩阵带来新客与话题，7.5× 产能把流量送进私域。</p>
+    <!-- 01 架构图 -->
+    <section id="flywheel" class="arch-hero">
+      <div class="arch-sheet">
+        <div class="arch-sheet-head">
+          <div>
+            <p class="arch-kicker">SYSTEM ARCHITECTURE / 06 PROJECTS</p>
+            <h2 class="arch-title">6 个项目 · Agent 业务飞轮</h2>
+            <p class="arch-sub">业务产生数据 → 数据训练模型 → 模型反哺业务。点击任一项目标题查看运行链路。</p>
+          </div>
+          <div class="arch-legend">
+            <span class="legend-item"><i class="l-main"></i>主流程</span>
+            <span class="legend-item"><i class="l-return"></i>反哺 / 重派</span>
+            <span class="legend-item"><i class="l-human"></i>人的决定</span>
+            <span class="legend-item"><i class="l-record"></i>写入记录</span>
+          </div>
         </div>
-        <button class="fly-open" id="caption-open" type="button">看链路 →</button>
-      </div>
-      <div class="fly-controls">
-        <div class="fly-dots" id="fly-dots" role="tablist" aria-label="飞轮步骤"></div>
-        <button class="fly-toggle" id="fly-toggle" type="button" aria-pressed="false">暂停</button>
+
+        <div class="arch-desktop">
+          <svg class="arch-svg" viewBox="0 0 1200 674" role="img" aria-label="6 个项目互成飞轮的系统架构图">
+            <defs>
+              <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#111827"/></marker>
+              <marker id="arr-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#7c3aed"/></marker>
+              <marker id="arr-orange" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#d97706"/></marker>
+              <marker id="arr-dash" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#94a3b8"/></marker>
+            </defs>
+            <g transform="translate(0,-46)">
+
+            <!-- events -->
+            <rect x="20" y="70" width="980" height="56" rx="12" fill="#e9f2fb" stroke="#bfd6ef"/>
+            <text x="34" y="102" font-size="11" font-weight="700" fill="#1e3a8a">事件</text>
+            <g font-size="10" fill="#263445" text-anchor="middle">
+              <rect x="100" y="83" width="130" height="30" rx="7" fill="#fff" stroke="#cbd9ea"/><text x="165" y="102">买家咨询</text>
+              <rect x="240" y="83" width="130" height="30" rx="7" fill="#fff" stroke="#cbd9ea"/><text x="305" y="102">售后报障</text>
+              <rect x="380" y="83" width="130" height="30" rx="7" fill="#fff" stroke="#cbd9ea"/><text x="445" y="102">内容选题</text>
+              <rect x="520" y="83" width="130" height="30" rx="7" fill="#fff" stroke="#cbd9ea"/><text x="585" y="102">数据接入</text>
+              <rect x="660" y="83" width="130" height="30" rx="7" fill="#fff" stroke="#cbd9ea"/><text x="725" y="102">模型评测</text>
+              <rect x="800" y="83" width="130" height="30" rx="7" fill="#fff" stroke="#cbd9ea"/><text x="865" y="102">平台调用</text>
+            </g>
+
+            <!-- 06 platform -->
+            <rect x="20" y="146" width="980" height="82" rx="12" fill="#143a33" stroke="#0b2a24"/>
+            <g class="arch-project" data-project="p6">
+              <rect class="arch-hit" x="20" y="146" width="980" height="30" rx="12"/>
+              <text x="34" y="168" font-size="11" font-weight="700" fill="#f4f8f5">06 · MCP 共享服务 / 统一网关</text>
+              <text x="930" y="168" font-size="8.5" fill="#f0c987">查看链路 ↗</text>
+            </g>
+            <g font-size="9" fill="#e9f6f1" text-anchor="middle">
+              <rect x="40" y="182" width="135" height="28" rx="6" fill="rgba(255,255,255,.09)" stroke="rgba(255,255,255,.28)"/><text x="107" y="200">鉴权 API Key→project</text>
+              <rect x="191" y="182" width="135" height="28" rx="6" fill="rgba(255,255,255,.09)" stroke="rgba(255,255,255,.28)"/><text x="258" y="200">幂等去重</text>
+              <rect x="342" y="182" width="135" height="28" rx="6" fill="rgba(255,255,255,.09)" stroke="rgba(255,255,255,.28)"/><text x="409" y="200">服务 / 模型路由</text>
+              <rect x="493" y="182" width="135" height="28" rx="6" fill="rgba(255,255,255,.09)" stroke="rgba(255,255,255,.28)"/><text x="560" y="200">Trace 贯穿</text>
+              <rect x="644" y="182" width="135" height="28" rx="6" fill="rgba(255,255,255,.09)" stroke="rgba(255,255,255,.28)"/><text x="711" y="200">配额 429</text>
+              <rect x="795" y="182" width="155" height="28" rx="6" fill="rgba(255,255,255,.09)" stroke="rgba(255,255,255,.28)"/><text x="872" y="200">MCP 转发</text>
+            </g>
+            <text x="40" y="222" font-size="8.5" fill="#9fc0b6">4 类共享能力：LLM / RAG / Memory / Prompt · 业务只依赖这一个 HTTP 入口</text>
+
+            <!-- business -->
+            <rect x="20" y="250" width="980" height="192" rx="12" fill="#ecf7f0" stroke="#c8e4d2"/>
+            <text x="34" y="270" font-size="11" font-weight="700" fill="#0f5132">业务执行 · 01 / 02 / 03</text>
+
+            <g class="arch-project" data-project="p1">
+              <rect class="arch-hit" x="36" y="278" width="286" height="30" rx="6"/>
+              <text x="40" y="292" font-size="11" font-weight="700" fill="#0f5132">01 导购 Agent</text>
+              <text x="40" y="305" font-size="8" fill="#4b6b57">Agent Loop · 5 Tools · Hybrid RAG</text>
+              <text x="310" y="292" font-size="8" fill="#0f766e">↗</text>
+            </g>
+            <g font-size="9.5" fill="#1f3a2b">
+              <rect x="40" y="318" width="280" height="22" rx="5" fill="#fff" stroke="#cfe0d5"/><text x="52" y="333">上下文装配（history + budget）</text>
+              <rect x="40" y="344" width="280" height="22" rx="5" fill="#fff" stroke="#cfe0d5"/><text x="52" y="359">Hybrid RAG（dense + BM25 + rerank）</text>
+              <rect x="40" y="370" width="280" height="22" rx="5" fill="#fff" stroke="#cfe0d5"/><text x="52" y="385">Agent Loop（plan → act → observe）</text>
+              <rect x="40" y="396" width="280" height="22" rx="5" fill="#fff" stroke="#cfe0d5"/><text x="52" y="411">5 个确定性 Tool + 低置信转人工</text>
+            </g>
+
+            <g class="arch-project" data-project="p2">
+              <rect class="arch-hit" x="346" y="278" width="286" height="30" rx="6"/>
+              <text x="350" y="292" font-size="11" font-weight="700" fill="#0f5132">02 RTC 语音售后</text>
+              <text x="350" y="305" font-size="8" fill="#4b6b57">CustomLLM · pgvector · Barge-in</text>
+              <text x="620" y="292" font-size="8" fill="#0f766e">↗</text>
+            </g>
+            <g font-size="9.5" fill="#1f3a2b">
+              <rect x="350" y="318" width="280" height="20" rx="5" fill="#fff" stroke="#cfe0d5"/><text x="362" y="332">ASR 语音转文本</text>
+              <rect x="350" y="342" width="280" height="20" rx="5" fill="#fff" stroke="#cfe0d5"/><text x="362" y="356">共享 RAG（pgvector HNSW）</text>
+              <rect x="350" y="366" width="280" height="20" rx="5" fill="#fff" stroke="#cfe0d5"/><text x="362" y="380">LLM 流式首 token</text>
+              <rect x="350" y="390" width="280" height="20" rx="5" fill="#fff" stroke="#cfe0d5"/><text x="362" y="404">TTS 合成与播放</text>
+              <rect x="350" y="414" width="280" height="20" rx="5" fill="#fff" stroke="#cfe0d5"/><text x="362" y="428">Barge-in 打断即停</text>
+            </g>
+
+            <g class="arch-project" data-project="p3">
+              <rect class="arch-hit" x="656" y="278" width="286" height="30" rx="6"/>
+              <text x="660" y="292" font-size="11" font-weight="700" fill="#0f5132">03 AIGC 内容工作流</text>
+              <text x="660" y="305" font-size="8" fill="#4b6b57">LangGraph · HITL · SSE</text>
+              <text x="930" y="292" font-size="8" fill="#0f766e">↗</text>
+            </g>
+            <g font-size="9.5" fill="#1f3a2b">
+              <rect x="660" y="318" width="280" height="20" rx="5" fill="#fff" stroke="#cfe0d5"/><text x="672" y="332">选题与大纲</text>
+              <rect x="660" y="342" width="280" height="20" rx="5" fill="#fff" stroke="#cfe0d5"/><text x="672" y="356">写作草稿</text>
+              <rect x="660" y="366" width="280" height="20" rx="5" fill="#fff3e4" stroke="#e8b36a"/><text x="672" y="380" fill="#92400e">HITL 人工审稿</text>
+              <rect x="660" y="390" width="280" height="20" rx="5" fill="#fff" stroke="#cfe0d5"/><text x="672" y="404">视觉拆解与配图</text>
+              <rect x="660" y="414" width="280" height="20" rx="5" fill="#fff" stroke="#cfe0d5"/><text x="672" y="428">本地化与归档</text>
+            </g>
+
+            <!-- data -->
+            <rect x="20" y="465" width="980" height="108" rx="12" fill="#e9f2fb" stroke="#bfd6ef"/>
+            <g class="arch-project" data-project="p4">
+              <rect class="arch-hit" x="20" y="465" width="980" height="28" rx="10"/>
+              <text x="34" y="485" font-size="11" font-weight="700" fill="#1e3a8a">04 数据中台 · 语料沉淀</text>
+              <text x="925" y="485" font-size="8.5" fill="#1d4ed8">查看链路 ↗</text>
+            </g>
+            <g font-size="9.5" fill="#263445" text-anchor="middle">
+              <rect x="40" y="495" width="140" height="28" rx="6" fill="#fff" stroke="#cbd9ea"/><text x="110" y="513">多源接入</text>
+              <rect x="191" y="495" width="140" height="28" rx="6" fill="#fff" stroke="#cbd9ea"/><text x="261" y="513">清洗切片</text>
+              <rect x="342" y="495" width="140" height="28" rx="6" fill="#fff" stroke="#cbd9ea"/><text x="412" y="513">9 级过滤</text>
+              <rect x="493" y="495" width="140" height="28" rx="6" fill="#fff" stroke="#cbd9ea"/><text x="563" y="513">双层 PII</text>
+              <rect x="644" y="495" width="140" height="28" rx="6" fill="#fff3e4" stroke="#e8b36a"/><text x="714" y="513" fill="#92400e">人工审批</text>
+              <rect x="795" y="495" width="165" height="28" rx="6" fill="#fff" stroke="#cbd9ea"/><text x="877" y="513">多格式导出</text>
+            </g>
+            <path d="M714 523 C714 558 261 558 261 523" fill="none" stroke="#7c3aed" stroke-width="1.6" marker-end="url(#arr-purple)"/>
+            <rect x="372" y="539" width="70" height="14" rx="3" fill="#e9f2fb"/>
+            <text x="407" y="550" font-size="8" fill="#7c3aed" text-anchor="middle">退回重洗</text>
+
+            <!-- model -->
+            <rect x="20" y="595" width="980" height="95" rx="12" fill="#f2ecfa" stroke="#d9c9ef"/>
+            <g class="arch-project" data-project="p5">
+              <rect class="arch-hit" x="20" y="595" width="980" height="28" rx="10"/>
+              <text x="34" y="615" font-size="11" font-weight="700" fill="#5b21b6">05 模型进化 · SFT / DPO</text>
+              <text x="925" y="615" font-size="8.5" fill="#6d28d9">查看链路 ↗</text>
+            </g>
+            <g font-size="9.5" fill="#3b2a52" text-anchor="middle">
+              <rect x="40" y="625" width="140" height="28" rx="6" fill="#fff" stroke="#d9c9ef"/><text x="110" y="643">语料抽取</text>
+              <rect x="191" y="625" width="140" height="28" rx="6" fill="#fff" stroke="#d9c9ef"/><text x="261" y="643">防泄漏切分</text>
+              <rect x="342" y="625" width="140" height="28" rx="6" fill="#fff" stroke="#d9c9ef"/><text x="412" y="643">SFT</text>
+              <rect x="493" y="625" width="140" height="28" rx="6" fill="#fff" stroke="#d9c9ef"/><text x="563" y="643">DPO</text>
+              <rect x="644" y="625" width="140" height="28" rx="6" fill="#fff3e4" stroke="#e8b36a"/><text x="714" y="643" fill="#92400e">五维盲评</text>
+              <rect x="795" y="625" width="165" height="28" rx="6" fill="#fff" stroke="#d9c9ef"/><text x="877" y="643">Adapter</text>
+            </g>
+            <path d="M714 653 C714 685 261 685 261 653" fill="none" stroke="#7c3aed" stroke-width="1.6" marker-end="url(#arr-purple)"/>
+            <rect x="372" y="667" width="70" height="14" rx="3" fill="#f2ecfa"/>
+            <text x="407" y="678" font-size="8" fill="#7c3aed" text-anchor="middle">退回重训</text>
+
+            <!-- records -->
+            <rect x="1020" y="70" width="160" height="615" rx="12" fill="#f1f3f6" stroke="#d5dae1"/>
+            <text x="1032" y="90" font-size="11" font-weight="700" fill="#334155">数据沉淀</text>
+            <g font-size="9" fill="#334155" text-anchor="middle">
+              <ellipse cx="1100" cy="106" rx="58" ry="5" fill="#fff" stroke="#c9d0d8"/><rect x="1042" y="106" width="116" height="28" fill="#fff" stroke="#c9d0d8"/><ellipse cx="1100" cy="134" rx="58" ry="5" fill="#fff" stroke="#c9d0d8"/><text x="1100" y="126">事件记录</text>
+              <ellipse cx="1100" cy="151" rx="58" ry="5" fill="#fff" stroke="#c9d0d8"/><rect x="1042" y="151" width="116" height="28" fill="#fff" stroke="#c9d0d8"/><ellipse cx="1100" cy="179" rx="58" ry="5" fill="#fff" stroke="#c9d0d8"/><text x="1100" y="171">运行记录</text>
+              <ellipse cx="1100" cy="196" rx="58" ry="5" fill="#fff" stroke="#c9d0d8"/><rect x="1042" y="196" width="116" height="28" fill="#fff" stroke="#c9d0d8"/><ellipse cx="1100" cy="224" rx="58" ry="5" fill="#fff" stroke="#c9d0d8"/><text x="1100" y="216">Trace 日志</text>
+              <ellipse cx="1100" cy="306" rx="58" ry="5" fill="#fff" stroke="#c9d0d8"/><rect x="1042" y="306" width="116" height="28" fill="#fff" stroke="#c9d0d8"/><ellipse cx="1100" cy="334" rx="58" ry="5" fill="#fff" stroke="#c9d0d8"/><text x="1100" y="326">会话记录</text>
+              <ellipse cx="1100" cy="356" rx="58" ry="5" fill="#fff" stroke="#c9d0d8"/><rect x="1042" y="356" width="116" height="28" fill="#fff" stroke="#c9d0d8"/><ellipse cx="1100" cy="384" rx="58" ry="5" fill="#fff" stroke="#c9d0d8"/><text x="1100" y="376">工单记录</text>
+              <ellipse cx="1100" cy="406" rx="58" ry="5" fill="#fff" stroke="#c9d0d8"/><rect x="1042" y="406" width="116" height="28" fill="#fff" stroke="#c9d0d8"/><ellipse cx="1100" cy="434" rx="58" ry="5" fill="#fff" stroke="#c9d0d8"/><text x="1100" y="426">内容记录</text>
+              <ellipse cx="1100" cy="486" rx="58" ry="5" fill="#fff" stroke="#c9d0d8"/><rect x="1042" y="486" width="116" height="28" fill="#fff" stroke="#c9d0d8"/><ellipse cx="1100" cy="514" rx="58" ry="5" fill="#fff" stroke="#c9d0d8"/><text x="1100" y="506">语料库</text>
+              <ellipse cx="1100" cy="536" rx="58" ry="5" fill="#fff" stroke="#c9d0d8"/><rect x="1042" y="536" width="116" height="28" fill="#fff" stroke="#c9d0d8"/><ellipse cx="1100" cy="564" rx="58" ry="5" fill="#fff" stroke="#c9d0d8"/><text x="1100" y="556">评测集</text>
+              <ellipse cx="1100" cy="606" rx="58" ry="5" fill="#fff" stroke="#c9d0d8"/><rect x="1042" y="606" width="116" height="28" fill="#fff" stroke="#c9d0d8"/><ellipse cx="1100" cy="634" rx="58" ry="5" fill="#fff" stroke="#c9d0d8"/><text x="1100" y="626">模型适配器</text>
+              <ellipse cx="1100" cy="651" rx="58" ry="5" fill="#fff" stroke="#c9d0d8"/><rect x="1042" y="651" width="116" height="28" fill="#fff" stroke="#c9d0d8"/><ellipse cx="1100" cy="679" rx="58" ry="5" fill="#fff" stroke="#c9d0d8"/><text x="1100" y="671">决定记录</text>
+            </g>
+
+            <!-- write records: dashed -->
+            <g stroke="#94a3b8" stroke-width="1" stroke-dasharray="4 4">
+              <line x1="1000" y1="98" x2="1018" y2="120" marker-end="url(#arr-dash)"/>
+              <line x1="1000" y1="166" x2="1018" y2="165" marker-end="url(#arr-dash)"/>
+              <line x1="1000" y1="210" x2="1018" y2="210" marker-end="url(#arr-dash)"/>
+              <line x1="1000" y1="320" x2="1018" y2="320" marker-end="url(#arr-dash)"/>
+              <line x1="1000" y1="370" x2="1018" y2="370" marker-end="url(#arr-dash)"/>
+              <line x1="1000" y1="420" x2="1018" y2="420" marker-end="url(#arr-dash)"/>
+              <line x1="1000" y1="500" x2="1018" y2="500" marker-end="url(#arr-dash)"/>
+              <line x1="1000" y1="550" x2="1018" y2="550" marker-end="url(#arr-dash)"/>
+              <line x1="1000" y1="620" x2="1018" y2="620" marker-end="url(#arr-dash)"/>
+              <line x1="1000" y1="665" x2="1018" y2="665" marker-end="url(#arr-dash)"/>
+            </g>
+
+            <!-- main flow -->
+            <g fill="none" stroke="#111827" stroke-width="1.7">
+              <path d="M510 126 L510 146" marker-end="url(#arr)"/>
+              <path d="M510 228 L510 250" marker-end="url(#arr)"/>
+              <path d="M510 442 L510 465" marker-end="url(#arr)"/>
+              <path d="M510 573 L510 595" marker-end="url(#arr)"/>
+            </g>
+            <g class="flow-live" fill="none" stroke="#0ea5a4" stroke-width="1.3">
+              <path d="M510 126 L510 146"/>
+              <path d="M510 228 L510 250"/>
+              <path d="M510 442 L510 465"/>
+              <path d="M510 573 L510 595"/>
+            </g>
+
+            <!-- model feedback back to business -->
+            <path d="M877 639 L1008 639 L1008 380 L950 380" fill="none" stroke="#7c3aed" stroke-width="1.7" marker-end="url(#arr-purple)"/>
+            <text x="1000" y="520" font-size="8.5" fill="#7c3aed" stroke="#f1f3f6" stroke-width="3" paint-order="stroke" text-anchor="middle" transform="rotate(-90 1000 520)">模型反哺 01 / 02 / 03</text>
+
+            <!-- human decision arrows -->
+            <path d="M785 509 L795 509" fill="none" stroke="#d97706" stroke-width="1.5" marker-end="url(#arr-orange)"/>
+            <path d="M785 639 L795 639" fill="none" stroke="#d97706" stroke-width="1.5" marker-end="url(#arr-orange)"/>
+
+            <!-- feedback reflow -->
+            <rect x="1042" y="684" width="116" height="22" rx="6" fill="#fff3e4" stroke="#e8b36a"/>
+            <text x="1100" y="699" font-size="8.5" fill="#92400e" text-anchor="middle">Badcase 回流</text>
+            </g>
+          </svg>
+        </div>
+
+        <!-- Mobile vertical architecture -->
+        <div class="arch-mobile">
+          <div class="m-legend">
+            <span class="legend-item"><i class="l-main"></i>主流程</span>
+            <span class="legend-item"><i class="l-return"></i>反哺 / 重派</span>
+            <span class="legend-item"><i class="l-human"></i>人的决定</span>
+            <span class="legend-item"><i class="l-record"></i>写入记录</span>
+          </div>
+
+          <div class="m-block m-events">
+            <div class="m-head"><span>事件</span><span class="m-hint">触发</span></div>
+            <div class="m-chips">
+              <span class="m-chip">买家咨询</span><span class="m-chip">售后报障</span><span class="m-chip">内容选题</span>
+              <span class="m-chip">数据接入</span><span class="m-chip">模型评测</span><span class="m-chip">平台调用</span>
+            </div>
+          </div>
+          <div class="m-arrow" aria-hidden="true"></div>
+
+          <div class="m-block m-platform m-click" data-project="p6">
+            <div class="m-head"><span>06 · MCP 共享服务 / 统一网关</span><span class="m-hint">查看链路 ↗</span></div>
+            <div class="m-chips">
+              <span class="m-chip">鉴权</span><span class="m-chip">幂等去重</span><span class="m-chip">服务 / 模型路由</span>
+              <span class="m-chip">Trace</span><span class="m-chip">配额 429</span><span class="m-chip">MCP 转发</span>
+            </div>
+            <p class="m-note">4 类共享能力：LLM / RAG / Memory / Prompt</p>
+          </div>
+          <div class="m-arrow" aria-hidden="true"></div>
+
+          <div class="m-block m-business">
+            <div class="m-head"><span>业务执行 · 01 / 02 / 03</span><span class="m-hint">点击项目标题</span></div>
+            <div class="m-lane m-click" data-project="p1">
+              <div class="m-lane-head">01 导购 Agent ↗</div>
+              <div class="m-chips"><span class="m-chip">上下文</span><span class="m-chip">Hybrid RAG</span><span class="m-chip">Agent Loop</span><span class="m-chip">5 Tools + 兜底</span></div>
+            </div>
+            <div class="m-lane m-click" data-project="p2">
+              <div class="m-lane-head">02 RTC 语音售后 ↗</div>
+              <div class="m-chips"><span class="m-chip">ASR</span><span class="m-chip">共享 RAG</span><span class="m-chip">LLM 流式</span><span class="m-chip">TTS</span><span class="m-chip">Barge-in</span></div>
+            </div>
+            <div class="m-lane m-click" data-project="p3">
+              <div class="m-lane-head">03 AIGC 内容工作流 ↗</div>
+              <div class="m-chips"><span class="m-chip">选题</span><span class="m-chip">写作</span><span class="m-chip m-human">HITL 审稿</span><span class="m-chip">配图</span><span class="m-chip">本地化</span></div>
+            </div>
+          </div>
+          <div class="m-arrow" aria-hidden="true"></div>
+
+          <div class="m-block m-data m-click" data-project="p4">
+            <div class="m-head"><span>04 数据中台 · 语料沉淀</span><span class="m-hint">查看链路 ↗</span></div>
+            <div class="m-chips">
+              <span class="m-chip">多源接入</span><span class="m-chip">清洗切片</span><span class="m-chip">9 级过滤</span>
+              <span class="m-chip">双层 PII</span><span class="m-chip m-human">人工审批</span><span class="m-chip">多格式导出</span>
+            </div>
+            <span class="m-return">↺ 审批不通过 → 退回重洗</span>
+          </div>
+          <div class="m-arrow" aria-hidden="true"></div>
+
+          <div class="m-block m-model m-click" data-project="p5">
+            <div class="m-head"><span>05 模型进化 · SFT / DPO</span><span class="m-hint">查看链路 ↗</span></div>
+            <div class="m-chips">
+              <span class="m-chip">语料抽取</span><span class="m-chip">防泄漏</span><span class="m-chip">SFT</span>
+              <span class="m-chip">DPO</span><span class="m-chip m-human">五维盲评</span><span class="m-chip">Adapter</span>
+            </div>
+            <span class="m-return">↺ 模型适配器反哺 01 / 02 / 03</span>
+          </div>
+
+          <div class="m-block m-records">
+            <div class="m-head"><span>数据沉淀</span><span class="m-hint">写入记录 ⋯</span></div>
+            <div class="m-records-grid">
+              <span class="m-record">事件记录</span><span class="m-record">运行记录</span><span class="m-record">Trace 日志</span>
+              <span class="m-record">会话记录</span><span class="m-record">工单记录</span><span class="m-record">内容记录</span>
+              <span class="m-record">语料库</span><span class="m-record">评测集</span><span class="m-record">模型适配器</span>
+              <span class="m-record">决定记录</span><span class="m-record m-human">Badcase 回流</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 

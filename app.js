@@ -13,142 +13,8 @@
       .replaceAll("'", "&#039;");
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  /* ------------------------------------------------------------------------
-     Flywheel
-     ------------------------------------------------------------------------ */
-
-  const flyNodes = $$(".fly-node, .fly-hub");
-  const arcs = $$(".arcs path");
-  const spokes = $$(".spokes line");
-  const captionIndex = $("#caption-index");
-  const captionCopy = $("#caption-copy");
-  const captionOpen = $("#caption-open");
-  const dotsRoot = $("#fly-dots");
-  const flyToggle = $("#fly-toggle");
-  const flywheel = $("#flywheel-diagram");
-
-  let activeIndex = 0;
-  let auto = !reduceMotion;
-  let timer = null;
-  let hoverPaused = false;
-  let lastFocus = null;
-
   const meta = typeof FLYWHEEL_META !== "undefined" ? FLYWHEEL_META : {};
-  const order = typeof FLYWHEEL_ORDER !== "undefined" ? FLYWHEEL_ORDER : [];
-
   const projectById = (id) => PROJECTS.find((p) => p.id === id);
-
-  function stepLabel(id, index) {
-    const project = projectById(id);
-    const role = meta[id] ? meta[id].role : "";
-    return `STEP ${String(index + 1).padStart(2, "0")} / 06 · ${project ? project.num : ""} ${role}`;
-  }
-
-  function setActive(id) {
-    const index = order.indexOf(id);
-    if (index >= 0) activeIndex = index;
-
-    flyNodes.forEach((node) => {
-      const on = node.dataset.project === id;
-      node.classList.toggle("active", on);
-      node.setAttribute("aria-pressed", on ? "true" : "false");
-    });
-
-    arcs.forEach((arc) => {
-      arc.classList.toggle("active", arc.dataset.from === id || arc.dataset.to === id);
-    });
-
-    spokes.forEach((line) => {
-      line.classList.toggle("active", id === "p6" || line.dataset.to === id);
-    });
-
-    if (captionIndex) captionIndex.textContent = stepLabel(id, activeIndex);
-    if (captionCopy && meta[id]) captionCopy.textContent = meta[id].caption;
-    if (captionOpen) captionOpen.dataset.project = id;
-
-    $$(".fly-dot", dotsRoot).forEach((dot, i) => {
-      dot.classList.toggle("active", i === activeIndex);
-      dot.setAttribute("aria-selected", i === activeIndex ? "true" : "false");
-    });
-  }
-
-  function buildDots() {
-    if (!dotsRoot) return;
-    dotsRoot.innerHTML = order
-      .map((id, i) => {
-        const project = projectById(id);
-        const label = `${meta[id] ? meta[id].role : id}，第 ${i + 1} 步`;
-        return `<button class="fly-dot${i === 0 ? " active" : ""}" type="button" role="tab"
-          aria-selected="${i === 0 ? "true" : "false"}" aria-label="${esc(label)}"
-          data-index="${i}"></button>`;
-      })
-      .join("");
-  }
-
-  function stopTimer() {
-    if (timer) clearInterval(timer);
-    timer = null;
-  }
-
-  function startTimer() {
-    stopTimer();
-    if (!auto || hoverPaused || order.length === 0) return;
-    timer = setInterval(() => {
-      const next = (activeIndex + 1) % order.length;
-      setActive(order[next]);
-    }, 2800);
-  }
-
-  function setAuto(on) {
-    auto = on;
-    if (flyToggle) {
-      flyToggle.textContent = on ? "暂停" : "播放";
-      flyToggle.setAttribute("aria-pressed", on ? "true" : "false");
-    }
-    if (on) startTimer();
-    else stopTimer();
-  }
-
-  if (flywheel && order.length) {
-    buildDots();
-
-    flyNodes.forEach((node) => {
-      node.addEventListener("click", () => {
-        const id = node.dataset.project;
-        if (!id) return;
-        setActive(id);
-        setAuto(false);
-      });
-    });
-
-    dotsRoot?.addEventListener("click", (event) => {
-      const dot = event.target.closest(".fly-dot");
-      if (!dot) return;
-      const index = Number(dot.dataset.index);
-      setActive(order[index]);
-      setAuto(false);
-    });
-
-    flyToggle?.addEventListener("click", () => setAuto(!auto));
-
-    flywheel.addEventListener("mouseenter", () => {
-      hoverPaused = true;
-      stopTimer();
-    });
-
-    flywheel.addEventListener("mouseleave", () => {
-      hoverPaused = false;
-      if (auto) startTimer();
-    });
-
-    captionOpen?.addEventListener("click", () => {
-      openDrawer(captionOpen.dataset.project || order[activeIndex]);
-    });
-
-    setAuto(auto);
-    setActive(order[0]);
-  }
 
   /* ------------------------------------------------------------------------
      Project runtime drawer
@@ -157,6 +23,7 @@
   const dialog = $("#project-dialog");
   const dialogContent = $("#dialog-content");
   const dialogClose = $("#dialog-close");
+  let lastFocus = null;
 
   function flowMarkup(project) {
     return project.nodes
@@ -239,7 +106,6 @@
     const project = projectById(id);
     if (!project) return;
 
-    setAuto(false);
     lastFocus = document.activeElement;
     dialogContent.innerHTML = dialogMarkup(project);
     document.body.classList.add("dialog-open");
@@ -286,6 +152,15 @@
     });
   }
 
+  /* Architecture sheet + project cards -> drawer */
+
+  $(".arch-sheet")?.addEventListener("click", (event) => {
+    const hit = event.target.closest("[data-project]");
+    if (!hit) return;
+    const id = hit.getAttribute("data-project");
+    if (id) openDrawer(id);
+  });
+
   $$(".pcard").forEach((card) => {
     card.addEventListener("click", () => openDrawer(card.dataset.project));
   });
@@ -310,7 +185,7 @@
           });
         });
       },
-      { rootMargin: "-18% 0px -70% 0px", threshold: 0 }
+      { rootMargin: "-20% 0px -70% 0px", threshold: 0 }
     );
     sections.forEach((section) => navObserver.observe(section));
   }
@@ -319,7 +194,7 @@
      Reveal below-the-fold sections
      ------------------------------------------------------------------------ */
 
-  const revealSections = $$("main section").filter((section) => !section.classList.contains("fly-section"));
+  const revealSections = $$("main section").filter((section) => !section.classList.contains("arch-hero"));
   revealSections.forEach((section) => section.classList.add("reveal"));
 
   if (!reduceMotion && "IntersectionObserver" in window) {
