@@ -10,24 +10,28 @@
 
 ## 特点
 
-- **6 条真实运行链路**：每个项目一张可交互流程图，节点数据来自 `可以观测整体的运行链路，可调试/catalog.json`，点击节点可看该步的实现说明与代码位置。
-- **证据优先**：项目卡片区分「生产口径」与「本地可复现边界」，不把目标态写成已完成。
-- **零外部依赖**：无 CDN、无 Google Fonts、无构建步骤；纯 HTML/CSS/JS，国内加载稳定。
+- **首屏飞轮**：6 个项目不是平铺的卡片，而是一张会自动运转的飞轮。内容获客 → 导购转化 → 售后留存 → 数据沉淀 → 模型进化，06 平台底座在中心托住每一环；自动轮播、可暂停、可点节点看说明。
+- **轻正文、重证据**：主页面只保留一句话与一个关键指标；完整项目描述、3 条要点、runtime 链路、代码位置与 EVIDENCE 收进右侧抽屉，点开再看。
+- **6 条真实运行链路**：节点数据来自 `可以观测整体的运行链路，可调试/catalog.json`；点击链路节点可看该步实现说明与源码位置。
+- **证据优先**：区分「生产口径」与「本地可复现边界」，不把目标态写成已完成。
+- **全端自适应**：桌面双栏、平板紧凑头部、手机单栏；手机首屏即可看到完整飞轮与当前步骤说明。
+- **零外部依赖**：无 CDN、无 Google Fonts、无构建步骤；纯 HTML/CSS/JS。
 - **可打印**：内置 print 样式，浏览器直接打印 / 导出 PDF 也可读。
 
 ## 目录
 
 ```text
 site/
-├── index.html          # 页面结构 + 静态文案
-├── styles.css          # 深色主题、响应式、打印样式
-├── data.js             # 6 个项目的文案与运行链路节点
-├── app.js              # 项目卡片渲染 / 节点交互 / 导航高亮 / 复制邮箱
+├── index.html          # 页面结构 + 静态文案 + 飞轮 SVG
+├── styles.css          # 深色主题、飞轮动画、抽屉、响应式、打印
+├── data.js             # 6 个项目详情 + 运行链路节点 + 飞轮元数据
+├── app.js              # 飞轮轮播 / 抽屉渲染 / 节点交互 / 导航高亮
 ├── assets/
 │   ├── suzhe-resume.pdf
 │   └── og.png
 ├── _headers            # Cloudflare Pages 安全与缓存响应头
-└── robots.txt
+├── robots.txt
+└── sitemap.xml
 ```
 
 ## 本地预览
@@ -40,8 +44,9 @@ python3 -m http.server 4173
 
 ## 更新内容
 
-- 简历正文 / 项目描述：改 `index.html` 或 `data.js`。
-- 项目运行链路：改 `data.js` 里的 `nodes`；字段为 `code / layer / title / endpoint / desc / source`。
+- 飞轮节点与文案：改 `data.js` 里的 `FLYWHEEL_META`；顺序改 `FLYWHEEL_ORDER`。
+- 项目卡片一句话 / 指标：改 `index.html` 的 `.pcard`。
+- 项目详情与运行链路：改 `data.js` 里的 `nodes`；字段为 `code / layer / title / label / endpoint / desc / source`。
 - 替换简历 PDF：覆盖 `assets/suzhe-resume.pdf`。
 - 替换社交分享图：覆盖 `assets/og.png`（建议 1200×630）。
 

@@ -184,3 +184,51 @@ const PROJECTS = [
     ]
   }
 ];
+
+/* 飞轮元数据：项目角色、关键指标、一句话说明 */
+const FLYWHEEL_META = {
+  p3: {
+    role: "内容获客",
+    metric: "7.5×",
+    tag: "业务层",
+    oneLine: "LangGraph 拆选题、写作、审稿、配图、本地化，两处 HITL 可恢复。",
+    caption: "内容矩阵带来新客与话题，7.5× 产能把流量送进私域。"
+  },
+  p1: {
+    role: "导购转化",
+    metric: "28.6%",
+    tag: "业务层",
+    oneLine: "Agent Loop 把价格、库存、禁忌下沉为 5 个确定性 Tool，40+ 分支收敛。",
+    caption: "导购 Agent 接住咨询，转化率 +28.6%，决策周期 -40%。"
+  },
+  p2: {
+    role: "售后留存",
+    metric: "<800ms",
+    tag: "业务层",
+    oneLine: "CustomLLM 回调串起 ASR → RAG → LLM → TTS，Barge-in 打断即停。",
+    caption: "实时语音售后 800ms 内响应，非质量类退货率 -34%。"
+  },
+  p4: {
+    role: "数据沉淀",
+    metric: "35万+",
+    tag: "数据层",
+    oneLine: "raw → staging → approved，9 级过滤 + 双层 PII，审核通过才供数。",
+    caption: "真实对话沉淀为 35 万+ 条可追溯、可审批的语料。"
+  },
+  p5: {
+    role: "模型进化",
+    metric: "58→91",
+    tag: "模型层",
+    oneLine: "本地 0.5B LoRA SFT + DPO 已跑通；3B QLoRA 与云端训练未执行。",
+    caption: "SFT/DPO 学会销冠话术，盲评 58 → 91，再反哺业务。"
+  },
+  p6: {
+    role: "平台底座",
+    metric: "4类",
+    tag: "平台层",
+    oneLine: "4 类 MCP 服务 + 统一网关：API Key → project、Trace、配额 429。",
+    caption: "4 类 MCP 共享服务托住所有业务：鉴权、Trace、配额、路由。"
+  }
+};
+
+const FLYWHEEL_ORDER = ["p3", "p1", "p2", "p4", "p5", "p6"];

@@ -2,6 +2,7 @@
   "use strict";
 
   const $ = (sel, root = document) => root.querySelector(sel);
+  const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
 
   const esc = (value) =>
     String(value ?? "")
@@ -11,11 +12,170 @@
       .replaceAll('"', "&quot;")
       .replaceAll("'", "&#039;");
 
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
   /* ------------------------------------------------------------------------
-     Project cards
+     Flywheel
      ------------------------------------------------------------------------ */
 
-  function detailMarkup(project, index) {
+  const flyNodes = $$(".fly-node, .fly-hub");
+  const arcs = $$(".arcs path");
+  const spokes = $$(".spokes line");
+  const captionIndex = $("#caption-index");
+  const captionCopy = $("#caption-copy");
+  const captionOpen = $("#caption-open");
+  const dotsRoot = $("#fly-dots");
+  const flyToggle = $("#fly-toggle");
+  const flywheel = $("#flywheel-diagram");
+
+  let activeIndex = 0;
+  let auto = !reduceMotion;
+  let timer = null;
+  let hoverPaused = false;
+  let lastFocus = null;
+
+  const meta = typeof FLYWHEEL_META !== "undefined" ? FLYWHEEL_META : {};
+  const order = typeof FLYWHEEL_ORDER !== "undefined" ? FLYWHEEL_ORDER : [];
+
+  const projectById = (id) => PROJECTS.find((p) => p.id === id);
+
+  function stepLabel(id, index) {
+    const project = projectById(id);
+    const role = meta[id] ? meta[id].role : "";
+    return `STEP ${String(index + 1).padStart(2, "0")} / 06 · ${project ? project.num : ""} ${role}`;
+  }
+
+  function setActive(id) {
+    const index = order.indexOf(id);
+    if (index >= 0) activeIndex = index;
+
+    flyNodes.forEach((node) => {
+      const on = node.dataset.project === id;
+      node.classList.toggle("active", on);
+      node.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+
+    arcs.forEach((arc) => {
+      arc.classList.toggle("active", arc.dataset.from === id || arc.dataset.to === id);
+    });
+
+    spokes.forEach((line) => {
+      line.classList.toggle("active", id === "p6" || line.dataset.to === id);
+    });
+
+    if (captionIndex) captionIndex.textContent = stepLabel(id, activeIndex);
+    if (captionCopy && meta[id]) captionCopy.textContent = meta[id].caption;
+    if (captionOpen) captionOpen.dataset.project = id;
+
+    $$(".fly-dot", dotsRoot).forEach((dot, i) => {
+      dot.classList.toggle("active", i === activeIndex);
+      dot.setAttribute("aria-selected", i === activeIndex ? "true" : "false");
+    });
+  }
+
+  function buildDots() {
+    if (!dotsRoot) return;
+    dotsRoot.innerHTML = order
+      .map((id, i) => {
+        const project = projectById(id);
+        const label = `${meta[id] ? meta[id].role : id}，第 ${i + 1} 步`;
+        return `<button class="fly-dot${i === 0 ? " active" : ""}" type="button" role="tab"
+          aria-selected="${i === 0 ? "true" : "false"}" aria-label="${esc(label)}"
+          data-index="${i}"></button>`;
+      })
+      .join("");
+  }
+
+  function stopTimer() {
+    if (timer) clearInterval(timer);
+    timer = null;
+  }
+
+  function startTimer() {
+    stopTimer();
+    if (!auto || hoverPaused || order.length === 0) return;
+    timer = setInterval(() => {
+      const next = (activeIndex + 1) % order.length;
+      setActive(order[next]);
+    }, 2800);
+  }
+
+  function setAuto(on) {
+    auto = on;
+    if (flyToggle) {
+      flyToggle.textContent = on ? "暂停" : "播放";
+      flyToggle.setAttribute("aria-pressed", on ? "true" : "false");
+    }
+    if (on) startTimer();
+    else stopTimer();
+  }
+
+  if (flywheel && order.length) {
+    buildDots();
+
+    flyNodes.forEach((node) => {
+      node.addEventListener("click", () => {
+        const id = node.dataset.project;
+        if (!id) return;
+        setActive(id);
+        setAuto(false);
+      });
+    });
+
+    dotsRoot?.addEventListener("click", (event) => {
+      const dot = event.target.closest(".fly-dot");
+      if (!dot) return;
+      const index = Number(dot.dataset.index);
+      setActive(order[index]);
+      setAuto(false);
+    });
+
+    flyToggle?.addEventListener("click", () => setAuto(!auto));
+
+    flywheel.addEventListener("mouseenter", () => {
+      hoverPaused = true;
+      stopTimer();
+    });
+
+    flywheel.addEventListener("mouseleave", () => {
+      hoverPaused = false;
+      if (auto) startTimer();
+    });
+
+    captionOpen?.addEventListener("click", () => {
+      openDrawer(captionOpen.dataset.project || order[activeIndex]);
+    });
+
+    setAuto(auto);
+    setActive(order[0]);
+  }
+
+  /* ------------------------------------------------------------------------
+     Project runtime drawer
+     ------------------------------------------------------------------------ */
+
+  const dialog = $("#project-dialog");
+  const dialogContent = $("#dialog-content");
+  const dialogClose = $("#dialog-close");
+
+  function flowMarkup(project) {
+    return project.nodes
+      .map(
+        (node, i) => `
+        <button class="flow-node${i === 0 ? " active" : ""}" type="button"
+          data-project="${esc(project.id)}" data-index="${i}"
+          aria-pressed="${i === 0 ? "true" : "false"}"
+          aria-label="第 ${esc(node.code)} 步：${esc(node.title)}">
+          <span class="node-code">${esc(node.code)}</span>
+          <span class="node-layer">${esc(node.layer)}</span>
+          <span class="node-title">${esc(node.label || node.title)}</span>
+        </button>
+        ${i < project.nodes.length - 1 ? '<span class="flow-link" aria-hidden="true"></span>' : ""}`
+      )
+      .join("");
+  }
+
+  function nodeDetailMarkup(project, index) {
     const node = project.nodes[index];
     return `
       <div class="detail-head">
@@ -28,7 +188,8 @@
     `;
   }
 
-  function projectMarkup(project) {
+  function dialogMarkup(project) {
+    const fly = meta[project.id] || { tag: "", role: "" };
     const metrics = project.metrics
       .map(
         (m) => `
@@ -38,94 +199,102 @@
         </div>`
       )
       .join("");
-
-    const nodes = project.nodes
-      .map(
-        (node, i) => `
-        <button class="node${i === 0 ? " active" : ""}" type="button"
-          data-project="${esc(project.id)}" data-index="${i}"
-          aria-pressed="${i === 0 ? "true" : "false"}"
-          aria-label="第 ${esc(node.code)} 步：${esc(node.title)}">
-          <span class="node-code">${esc(node.code)}</span>
-          <span class="node-layer">${esc(node.layer)}</span>
-          <span class="node-title">${esc(node.label || node.title)}</span>
-        </button>
-        ${i < project.nodes.length - 1 ? '<span class="flow-link" aria-hidden="true"></span>' : ""}`
-      )
-      .join("");
-
     const bullets = project.bullets.map((b) => `<li>${esc(b)}</li>`).join("");
     const stack = project.stack.map((s) => `<span>${esc(s)}</span>`).join("");
 
     return `
-      <article class="project" id="${esc(project.id)}" style="--accent:${esc(project.accent)}">
-        <div class="project-head">
-          <div>
-            <div class="project-title-row">
-              <span class="project-num">${esc(project.num)}</span>
-              <h4>${esc(project.name)}</h4>
-            </div>
-            <p class="project-role"><span>${esc(project.role)}</span></p>
-          </div>
-          <p class="project-date">${esc(project.period)}</p>
+      <p class="dialog-kicker">${esc(project.num)} / ${esc(fly.tag)} · ${esc(fly.role)}</p>
+      <h3 class="dialog-title" id="dialog-title">${esc(project.name)}</h3>
+      <p class="dialog-meta">${esc(project.period)} · ${esc(project.role)}</p>
+      <p class="dialog-desc">${esc(project.desc)}</p>
+
+      <div class="metrics">${metrics}</div>
+
+      <div class="flow-label">
+        <span>RUNTIME / 运行链路</span>
+        <em>点击节点查看实现细节</em>
+      </div>
+      <div class="flow-wrap">
+        <div class="flow" role="group" aria-label="${esc(project.short)} 运行链路">
+          ${flowMarkup(project)}
         </div>
+      </div>
+      <div class="node-detail" data-detail="${esc(project.id)}" aria-live="polite">
+        ${nodeDetailMarkup(project, 0)}
+      </div>
 
-        <p class="project-desc">${esc(project.desc)}</p>
+      <ul class="project-points">${bullets}</ul>
 
-        <div class="metrics">${metrics}</div>
+      <div class="evidence">
+        <b>EVIDENCE</b>
+        <span>${esc(project.evidence)}</span>
+      </div>
 
-        <div class="flow-label">
-          <span>RUNTIME / 运行链路</span>
-          <em>点击节点查看实现细节</em>
-        </div>
-        <div class="flow-wrap">
-          <div class="flow" role="group" aria-label="${esc(project.short)} 运行链路">${nodes}</div>
-        </div>
-        <div class="node-detail" data-detail="${esc(project.id)}" aria-live="polite">
-          ${detailMarkup(project, 0)}
-        </div>
-
-        <ul class="project-points">${bullets}</ul>
-
-        <div class="evidence">
-          <b>EVIDENCE</b>
-          <span>${esc(project.evidence)}</span>
-        </div>
-
-        <div class="project-stack">${stack}</div>
-      </article>
+      <div class="project-stack">${stack}</div>
     `;
   }
 
-  const projectList = $("#project-list");
-  if (projectList && typeof PROJECTS !== "undefined") {
-    projectList.innerHTML = PROJECTS.map(projectMarkup).join("");
+  function openDrawer(id) {
+    if (!dialog || !dialogContent) return;
+    const project = projectById(id);
+    if (!project) return;
 
-    projectList.addEventListener("click", (event) => {
-      const node = event.target.closest(".node");
+    setAuto(false);
+    lastFocus = document.activeElement;
+    dialogContent.innerHTML = dialogMarkup(project);
+    document.body.classList.add("dialog-open");
+    if (typeof dialog.showModal === "function") dialog.showModal();
+    else dialog.setAttribute("open", "");
+    dialogClose?.focus();
+  }
+
+  function closeDrawer() {
+    if (!dialog) return;
+    if (typeof dialog.close === "function") dialog.close();
+    else dialog.removeAttribute("open");
+  }
+
+  if (dialog) {
+    dialog.addEventListener("close", () => {
+      document.body.classList.remove("dialog-open");
+      if (lastFocus && typeof lastFocus.focus === "function") lastFocus.focus();
+    });
+
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) closeDrawer();
+    });
+
+    dialogClose?.addEventListener("click", closeDrawer);
+
+    dialogContent?.addEventListener("click", (event) => {
+      const node = event.target.closest(".flow-node");
       if (!node) return;
 
       const projectId = node.dataset.project;
       const index = Number(node.dataset.index);
-      const project = PROJECTS.find((p) => p.id === projectId);
+      const project = projectById(projectId);
       if (!project) return;
 
       const flow = node.closest(".flow");
-      flow.querySelectorAll(".node").forEach((n) => {
+      $$(".flow-node", flow).forEach((n) => {
         n.classList.toggle("active", n === node);
         n.setAttribute("aria-pressed", n === node ? "true" : "false");
       });
 
-      const detail = projectList.querySelector(`[data-detail="${projectId}"]`);
-      if (detail) detail.innerHTML = detailMarkup(project, index);
+      const detail = dialogContent.querySelector(`[data-detail="${projectId}"]`);
+      if (detail) detail.innerHTML = nodeDetailMarkup(project, index);
     });
   }
 
+  $$(".pcard").forEach((card) => {
+    card.addEventListener("click", () => openDrawer(card.dataset.project));
+  });
+
   /* ------------------------------------------------------------------------
-     Section nav — highlight the section currently in view
+     Section nav
      ------------------------------------------------------------------------ */
 
-  const navLinks = [...document.querySelectorAll(".nav a")];
+  const navLinks = $$(".nav a");
   const sections = navLinks
     .map((link) => document.querySelector(link.getAttribute("href")))
     .filter(Boolean);
@@ -141,17 +310,17 @@
           });
         });
       },
-      { rootMargin: "-20% 0px -68% 0px", threshold: 0 }
+      { rootMargin: "-18% 0px -70% 0px", threshold: 0 }
     );
     sections.forEach((section) => navObserver.observe(section));
   }
 
   /* ------------------------------------------------------------------------
-     Reveal sections on scroll
+     Reveal below-the-fold sections
      ------------------------------------------------------------------------ */
 
-  const revealEls = [...document.querySelectorAll(".reveal")];
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const revealSections = $$("main section").filter((section) => !section.classList.contains("fly-section"));
+  revealSections.forEach((section) => section.classList.add("reveal"));
 
   if (!reduceMotion && "IntersectionObserver" in window) {
     const revealObserver = new IntersectionObserver(
@@ -162,15 +331,15 @@
           revealObserver.unobserve(entry.target);
         });
       },
-      { threshold: 0.08 }
+      { threshold: 0.06 }
     );
-    revealEls.forEach((el) => revealObserver.observe(el));
+    revealSections.forEach((section) => revealObserver.observe(section));
   } else {
-    revealEls.forEach((el) => el.classList.add("visible"));
+    revealSections.forEach((section) => section.classList.add("visible"));
   }
 
   /* ------------------------------------------------------------------------
-     Copy email
+     Copy email / year
      ------------------------------------------------------------------------ */
 
   const toast = $("#toast");
@@ -202,10 +371,6 @@
       }
     });
   }
-
-  /* ------------------------------------------------------------------------
-     Misc
-     ------------------------------------------------------------------------ */
 
   const year = $("#year");
   if (year) year.textContent = String(new Date().getFullYear());
