@@ -2,7 +2,7 @@
 
 ![预览](assets/og.png)
 
-深色单页简历站，服务于 AI 应用开发 / Agent 架构岗位投递。部署在 Cloudflare Pages，国内可直接访问。
+深色单页简历站，服务于 AI 应用开发 / Agent 架构岗位投递。部署在 Cloudflare Pages，国内多数网络可直连；如遇个别运营商 DNS 污染或晚高峰波动，绑定自定义域名即可绕开 `pages.dev` 域名层。
 
 线上地址：**https://suzhe-resume.pages.dev**
 
